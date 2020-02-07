@@ -7,7 +7,6 @@ CORS(app)
 
 #will add SQLAlchemy
 #test
-#test2
 
 
 
