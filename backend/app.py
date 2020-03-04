@@ -39,15 +39,14 @@ class Log(db.Model):
     self.info = info
 
 class Course(db.Model):
-  id = db.Column(db.Integer, primary_key=True)
-  sid = db.Column(db.Integer)
-  Dept = db.Column(db.String(100))
-  CourseNum = db.Column(db.Integer)
+ # id = db.Column(db.Integer, primary_key=True)
+  #sid = db.Column(db.Integer)
+  Dept = db.Column(db.String(100), primary_key=True)
+  CourseNum = db.Column(db.Integer,primary_key=True)
   Name = db.Column(db.String(100))
   Cat = db.Column(db.String(100))
 
-  def __init__(self, sid,  Dept, CourseNum, Name, Cat):
-    self.sid = sid
+  def __init__(self,  Dept, CourseNum, Name, Cat):
     self.Dept= Dept
     self.CourseNum = CourseNum
     self.Name = Name
@@ -56,7 +55,7 @@ class Course(db.Model):
 # Product Schema
 class CourseSchema(ma.Schema):
   class Meta:
-    fields = ('id','sid', 'Dept', 'CourseNum', 'Name', 'Cat')
+    fields = ('id', 'Dept', 'CourseNum', 'Name', 'Cat')
 
 class StudentSchema(ma.Schema):
   class Meta:
@@ -86,9 +85,8 @@ def add_product():
   CourseNum = request.json['CourseNum']
   Name = request.json['Name']
   Cat = request.json['Cat']
-  sid = request.json['sid']
 
-  new_Course = Course(sid,dept, CourseNum, Name, Cat)
+  new_Course = Course(dept, CourseNum, Name, Cat)
 
   db.session.add(new_Course)
   db.session.commit()
@@ -158,6 +156,10 @@ def getstudent(id):
   return student_schema.jsonify(student)
 
 
+  ################################################
+            #####  START LOG ########
+      ##### SCHEMA = ('id','date','sid','info')######
+#@app.route('/log',methods=[])
 
 if __name__ == '__main__':
     app.run(debug=True)
