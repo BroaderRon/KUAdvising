@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-from flask_sqlalchemy import SQLAlchemy 
+from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow 
 import os
 from flask_cors import CORS
@@ -17,7 +17,6 @@ db = SQLAlchemy(app)
 # Init ma
 ma = Marshmallow(app)
 
-# Product Class/Model
 class Student(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   name = db.Column(db.String(100))
@@ -97,7 +96,7 @@ log_schema = LogSchema()
 logs_schema = LogSchema(many=True)
 
 enroll_schema = EnrollSchema()
-enrolled_schema = EnrolledSchema(many=True)
+enrolled_schema = EnrollSchema(many=True)
 
 # Create a course
 @app.route('/course', methods=['POST'])
@@ -105,9 +104,8 @@ def add_product():
   dept = request.json['Dept']
   CourseNum = request.json['CourseNum']
   Name = request.json['Name']
-  Cat = request.json['Cat']
 
-  new_Course = Course(dept, CourseNum, Name, Cat)
+  new_Course = Course(dept, CourseNum, Name)
 
   db.session.add(new_Course)
   db.session.commit()
@@ -122,13 +120,13 @@ def get_products():
   return jsonify(result)
 
 #get certain student  courses
-@app.route('/course/<Dept,CourseNum>', methods=['GET'])
+@app.route('/course/<Dept>/<CourseNum>', methods=['GET'])
 def get_product(Dept,CourseNum):
-  courses = Course.query.get(Dept,CourseNum)
-  return courses_schema.jsonify(courses)
+  courses = Course.query.get((Dept,CourseNum))
+  return course_schema.jsonify(courses)
 
 # Update a Product
-@app.route('/course/<Dept,CourseNum>', methods=['PUT'])
+@app.route('/course/<Dept>/<CourseNum>', methods=['PUT'])
 ##NEED TO FIX SOON
 def update_product(oDept,oCourseNum):
   #course = Course.query.get(id)
@@ -181,7 +179,33 @@ def getstudent(id):
   ################################################
             #####  START LOG ########
       ##### SCHEMA = ('id','date','sid','info')######
-@app.route('/log',methods=[])
+#@app.route('/log',methods=[])
+
+                      ################################################
+                                    #####  START LOG ########
+      ##### SCHEMA = ( 'sid', 'Dept', 'CourseNum', 'Semester', 'Grade', 'Cat')###
+
+# Create a new enroll entry
+@app.route('/enroll', methods=['POST'])
+def add_enroll():
+  exists = db.session.query(db.exists().where((Course.CourseNum ==request.json['CourseNum'])and(Course.Dept == request.json['Dept']))).scalar()
+  if exists:
+    sid = request.json['sid']
+    Dept = request.json['Dept']
+    CourseNum = request.json['CourseNum']
+    Semester = request.json['Semester']
+    Grade = request.json['Grade']
+    Cat = request.json['Cat']
+
+    Enrolling = Enroll(sid,Dept,CourseNum,Semester,Grade,Cat)
+
+    db.session.add(Enrolling)
+    db.session.commit()
+    retT = {"RESULT": "TRUE"}
+    return jsonify(retT)
+  retF= {"RESULT":"FALSE"}
+  return jsonify(retF)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
