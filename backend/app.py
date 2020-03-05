@@ -46,16 +46,31 @@ class Course(db.Model):
   Name = db.Column(db.String(100))
   Cat = db.Column(db.String(100))
 
-  def __init__(self,  Dept, CourseNum, Name, Cat):
+  def __init__(self,  Dept, CourseNum, Name):
     self.Dept= Dept
     self.CourseNum = CourseNum
     self.Name = Name
+
+class Enroll(db.Model):
+  sid = db.Column(db.Integer,primary_key=True)
+  Dept = db.Column(db.String(100), primary_key=True)
+  CourseNum = db.Column(db.Integer, primary_key=True)
+  Semester = db.Column(db.String(100))
+  Grade = db.Column(db.String(3))
+  Cat = db.Column(db.String(10))
+
+  def __init__(self, sid, Dept, CourseNum, Semester, Grade, Cat):
+    self.sid = sid
+    self.Dept= Dept
+    self.CourseNum = CourseNum
+    self.Semester = Semester
+    self.Grade = Grade
     self.Cat = Cat
 
 # Product Schema
 class CourseSchema(ma.Schema):
   class Meta:
-    fields = ('id', 'Dept', 'CourseNum', 'Name', 'Cat')
+    fields = ('id', 'Dept', 'CourseNum', 'Name')
 
 class StudentSchema(ma.Schema):
   class Meta:
@@ -65,6 +80,9 @@ class LogSchema(ma.Schema):
   class Meta:
     fields = ('id','date','sid','info')
 
+class EnrollSchema(ma.Schema):
+  class Meta:
+    fields = ( 'sid', 'Dept', 'CourseNum', 'Semester', 'Grade', 'Cat')
 
 db.create_all()
 
@@ -78,7 +96,10 @@ students_schema = StudentSchema(many=True)
 log_schema = LogSchema()
 logs_schema = LogSchema(many=True)
 
-# Create a Product
+enroll_schema = EnrollSchema()
+enrolled_schema = EnrolledSchema(many=True)
+
+# Create a course
 @app.route('/course', methods=['POST'])
 def add_product():
   dept = request.json['Dept']
@@ -101,15 +122,16 @@ def get_products():
   return jsonify(result)
 
 #get certain student  courses
-@app.route('/course/<sid>', methods=['GET'])
-def get_product(sid):
-  courses = Course.query.get(sid)
+@app.route('/course/<Dept,CourseNum>', methods=['GET'])
+def get_product(Dept,CourseNum):
+  courses = Course.query.get(Dept,CourseNum)
   return courses_schema.jsonify(courses)
 
 # Update a Product
-@app.route('/course/<id>', methods=['PUT'])
-def update_product(id):
-  course = Course.query.get(id)
+@app.route('/course/<Dept,CourseNum>', methods=['PUT'])
+##NEED TO FIX SOON
+def update_product(oDept,oCourseNum):
+  #course = Course.query.get(id)
   Dept = request.json['Dept']
   CourseNum = request.json['CourseNum']
   Name = request.json['Name']
@@ -154,12 +176,12 @@ def getstudents():
 def getstudent(id):
   student = Student.query.get(id)
   return student_schema.jsonify(student)
-
+##NEED PUT REQUEST
 
   ################################################
             #####  START LOG ########
       ##### SCHEMA = ('id','date','sid','info')######
-#@app.route('/log',methods=[])
+@app.route('/log',methods=[])
 
 if __name__ == '__main__':
     app.run(debug=True)
