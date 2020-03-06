@@ -70,7 +70,7 @@ class Enroll(db.Model):
 #SCHEMAS
 class CourseSchema(ma.Schema):
   class Meta:
-    fields = ('id', 'Dept', 'CourseNum', 'Name')
+    fields = ('Dept', 'CourseNum', 'Name')
 
 class StudentSchema(ma.Schema):
   class Meta:
@@ -102,7 +102,7 @@ enrolled_schema = EnrollSchema(many=True)
 
 # Create a course
 @app.route('/course', methods=['POST'])
-def add_product():
+def add_Course():
   dept = request.json['Dept']
   CourseNum = request.json['CourseNum']
   Name = request.json['Name']
@@ -116,20 +116,19 @@ def add_product():
 
 #get all products
 @app.route('/course', methods=['GET'])
-def get_products():
+def get_Courses():
   all_courses = Course.query.all()
   result = courses_schema.dump(all_courses)
   return jsonify(result)
 
 #get certain student  courses
 @app.route('/course/<Dept>/<CourseNum>', methods=['GET'])
-def get_product(Dept,CourseNum):
+def get_course(Dept,CourseNum):
   courses = Course.query.get((Dept,CourseNum))
   return course_schema.jsonify(courses)
 
 # Update a Product
 @app.route('/course/<KDept>/<KCourseNum>', methods=['PUT'])
-##NEED TO FIX SOON
 def update_Course(KDept,KCourseNum):
   course = Course.query.get((KDept,KCourseNum))
   Dept = request.json['Dept']
@@ -173,6 +172,17 @@ def getstudent(id):
   student = Student.query.get(id)
   return student_schema.jsonify(student)
 ##NEED PUT REQUEST
+@app.route('/student/<id>', methods=['PUT'])
+def update_Student(id):
+  stu = Student.query.get(id)
+  name = request.json['Name']
+  aid = request.json['aid']
+
+  stu.name = name
+  stu.aid = aid
+
+  db.session.commit()
+  return student_schema.jsonify(stu)
 
   ################################################
             #####  START LOG ########
@@ -236,6 +246,26 @@ def get_Cenrolled(sid,Dept,CourseNum):
 def get_Senrolled(sid):
   courses = Enroll.query.filter(Enroll.sid == sid)
   return enrolled_schema.jsonify(courses)
+ 
+@app.route('/enroll/<sid>/<KDept>/<KCourseNum>', methods=['PUT'])
+def update_Enroll(sid,KDept,KCourseNum):
+  enrollUP = Enroll.query.get((sid,KDept,KCourseNum))
+  sid = request.json['sid']
+  Dept = request.json['Dept']
+  CourseNum = request.json['CourseNum']
+  Semester = request.json['Semester']
+  Grade = request.json['Grade']
+  Cat = request.json['Cat']
+
+  enrollUP.sid = sid
+  enrollUP.Dept = Dept
+  enrollUP.CourseNum = CourseNum
+  enrollUP.Semester = Semester
+  enrollUP.Grade = Grade
+  enrollUP.Cat = Cat
+
+  db.session.commit()
+  return enroll_schema.jsonify(enrollUP)
   
 if __name__ == '__main__':
     app.run(debug=True)
