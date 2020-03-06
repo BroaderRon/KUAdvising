@@ -1,3 +1,8 @@
+'''
+Author: KUAdvising Team
+Filename: app.py
+Purpose: provide a backend for our program all of the routes for our api will be stored here
+'''
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow 
@@ -27,6 +32,13 @@ class Student(db.Model):
     self.name = name
     self.aid = aid
 
+class Advisor(db.Model):
+  id = db.Column(db.Integer, primary_key=True)
+  Name = db.Column(db.String(100))
+
+  def __init__(self,Name):
+    self.name = Name
+
 class Log(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   date = db.Column(db.String(100))
@@ -39,8 +51,6 @@ class Log(db.Model):
     self.info = info
 
 class Course(db.Model):
- # id = db.Column(db.Integer, primary_key=True)
-  #sid = db.Column(db.Integer)
   Dept = db.Column(db.String(100), primary_key=True)
   CourseNum = db.Column(db.Integer,primary_key=True)
   Name = db.Column(db.String(100))
@@ -72,6 +82,10 @@ class CourseSchema(ma.Schema):
   class Meta:
     fields = ('Dept', 'CourseNum', 'Name')
 
+class AdvisorSchema(ma.Schema):
+  class Meta:
+    fields = ('id','Name')
+
 class StudentSchema(ma.Schema):
   class Meta:
     fields = ('id','name','aid')
@@ -100,6 +114,13 @@ logs_schema = LogSchema(many=True)
 enroll_schema = EnrollSchema()
 enrolled_schema = EnrollSchema(many=True)
 
+advisor_schema = AdvisorSchema()
+advisors_schema = AdvisorSchema(many=True)
+
+  ################################################
+            #####  START Course ########
+      ##### SCHEMA = (Dept, CourseNum, Name)######
+
 # Create a course
 @app.route('/course', methods=['POST'])
 def add_Course():
@@ -114,20 +135,20 @@ def add_Course():
 
   return course_schema.jsonify(new_Course)
 
-#get all products
+#get all courses
 @app.route('/course', methods=['GET'])
 def get_Courses():
   all_courses = Course.query.all()
   result = courses_schema.dump(all_courses)
   return jsonify(result)
 
-#get certain student  courses
+#get certain courses
 @app.route('/course/<Dept>/<CourseNum>', methods=['GET'])
 def get_course(Dept,CourseNum):
   courses = Course.query.get((Dept,CourseNum))
   return course_schema.jsonify(courses)
 
-# Update a Product
+# Update a course
 @app.route('/course/<KDept>/<KCourseNum>', methods=['PUT'])
 def update_Course(KDept,KCourseNum):
   course = Course.query.get((KDept,KCourseNum))
@@ -148,6 +169,7 @@ def update_Course(KDept,KCourseNum):
             #####  START STUDENTS ########
       ##### SCHEMA = ('id','name','aid')######
 
+#create a new student
 @app.route('/student', methods=['POST'])
 def createStudent():
   name = request.json['Name']
@@ -160,18 +182,20 @@ def createStudent():
 
   return student_schema.jsonify(newStudent)
 
+#get all students
 @app.route('/student', methods=['GET'])
 def getstudents():
   allStudents = Student.query.all()
   result = students_schema.dump(allStudents)
   return jsonify(result)
 
-  #get certain student  courses
+#get a certain student
 @app.route('/student/<id>', methods=['GET'])
 def getstudent(id):
   student = Student.query.get(id)
   return student_schema.jsonify(student)
-##NEED PUT REQUEST
+
+##update a student
 @app.route('/student/<id>', methods=['PUT'])
 def update_Student(id):
   stu = Student.query.get(id)
@@ -187,6 +211,7 @@ def update_Student(id):
   ################################################
             #####  START LOG ########
       ##### SCHEMA = ('id','date','sid','info')######
+#create log      
 @app.route('/log',methods=['POST'])
 def make_log():
   date = request.json['date']
@@ -199,15 +224,21 @@ def make_log():
 
   return log_schema.jsonify(newLog)
 
+#get all logs
 @app.route('/log', methods=['GET'])
 def get_log():
   all_logs = Log.query.all()
   result = logs_schema.dump(all_logs)
   return jsonify(result)
+#get all of a students log
+@app.route('/log/<sid>', methods=['GET'])
+def get_logs(sid):
+  courses = Log.query.filter(Log.sid == sid)
+  return logs_schema.jsonify(courses)
 
 
                       ################################################
-                                    #####  START LOG ########
+                                    #####  START Enroll ########
       ##### SCHEMA = ( 'sid', 'Dept', 'CourseNum', 'Semester', 'Grade', 'Cat')###
 
 # Create a new enroll entry
@@ -231,22 +262,26 @@ def add_enroll():
   retF= {"RESULT":"FALSE"}
   return jsonify(retF)
 
+#get all enroll entrys
 @app.route('/enroll', methods =['GET'])
 def get_enrolled():
   enrolled = Enroll.query.all()
   result = enrolled_schema.dump(enrolled)
   return jsonify(result)
 
+#get a specific entry
 @app.route('/enroll/<sid>/<Dept>/<CourseNum>', methods=['GET'])
 def get_Cenrolled(sid,Dept,CourseNum):
   courses = Enroll.query.get((sid,Dept,CourseNum))
   return enroll_schema.jsonify(courses)
   
+#get all enroll entry for a student
 @app.route('/enroll/<sid>', methods=['GET'])
 def get_Senrolled(sid):
   courses = Enroll.query.filter(Enroll.sid == sid)
   return enrolled_schema.jsonify(courses)
  
+ #update a enroll entry
 @app.route('/enroll/<sid>/<KDept>/<KCourseNum>', methods=['PUT'])
 def update_Enroll(sid,KDept,KCourseNum):
   enrollUP = Enroll.query.get((sid,KDept,KCourseNum))
