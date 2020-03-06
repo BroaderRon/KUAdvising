@@ -17,6 +17,7 @@ db = SQLAlchemy(app)
 # Init ma
 ma = Marshmallow(app)
 
+#TABLES
 class Student(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   name = db.Column(db.String(100))
@@ -66,7 +67,7 @@ class Enroll(db.Model):
     self.Grade = Grade
     self.Cat = Cat
 
-# Product Schema
+#SCHEMAS
 class CourseSchema(ma.Schema):
   class Meta:
     fields = ('id', 'Dept', 'CourseNum', 'Name')
@@ -83,6 +84,7 @@ class EnrollSchema(ma.Schema):
   class Meta:
     fields = ( 'sid', 'Dept', 'CourseNum', 'Semester', 'Grade', 'Cat')
 
+#INITALIZING DB
 db.create_all()
 
 # Init schema
@@ -126,21 +128,17 @@ def get_product(Dept,CourseNum):
   return course_schema.jsonify(courses)
 
 # Update a Product
-@app.route('/course/<Dept>/<CourseNum>', methods=['PUT'])
+@app.route('/course/<KDept>/<KCourseNum>', methods=['PUT'])
 ##NEED TO FIX SOON
-def update_product(oDept,oCourseNum):
-  #course = Course.query.get(id)
+def update_Course(KDept,KCourseNum):
+  course = Course.query.get((KDept,KCourseNum))
   Dept = request.json['Dept']
   CourseNum = request.json['CourseNum']
   Name = request.json['Name']
-  Cat = request.json['Cat']
-  sid = request.json['sid']
 
   course.Dept = Dept
   course.Name = Name
   course.CourseNum = CourseNum
-  course.Cat = Cat
-  course.sid = sid
 
   db.session.commit()
 
@@ -179,7 +177,24 @@ def getstudent(id):
   ################################################
             #####  START LOG ########
       ##### SCHEMA = ('id','date','sid','info')######
-#@app.route('/log',methods=[])
+@app.route('/log',methods=['POST'])
+def make_log():
+  date = request.json['date']
+  sid = request.json['sid']
+  info = request.json['info']
+  newLog = Log(date,sid,info)
+
+  db.session.add(newLog)
+  db.session.commit()
+
+  return log_schema.jsonify(newLog)
+
+@app.route('/log', methods=['GET'])
+def get_log():
+  all_logs = Log.query.all()
+  result = logs_schema.dump(all_logs)
+  return jsonify(result)
+
 
                       ################################################
                                     #####  START LOG ########
@@ -206,6 +221,21 @@ def add_enroll():
   retF= {"RESULT":"FALSE"}
   return jsonify(retF)
 
+@app.route('/enroll', methods =['GET'])
+def get_enrolled():
+  enrolled = Enroll.query.all()
+  result = enrolled_schema.dump(enrolled)
+  return jsonify(result)
 
+@app.route('/enroll/<sid>/<Dept>/<CourseNum>', methods=['GET'])
+def get_Cenrolled(sid,Dept,CourseNum):
+  courses = Enroll.query.get((sid,Dept,CourseNum))
+  return enroll_schema.jsonify(courses)
+  
+@app.route('/enroll/<sid>', methods=['GET'])
+def get_Senrolled(sid):
+  courses = Enroll.query.filter(Enroll.sid == sid)
+  return enrolled_schema.jsonify(courses)
+  
 if __name__ == '__main__':
     app.run(debug=True)
