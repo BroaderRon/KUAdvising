@@ -1,0 +1,76 @@
+#container
+{
+  margin-top: -4em;
+  padding: 0px;
+}
+
+body{
+  background-color:grey;
+}
+
+header{
+
+}
+
+header h1{
+  text-align: center;
+  font-size: 6em;
+  text-decoration: underline;
+  color: #f4d020;
+  background-color: #701931;  
+}
+
+footer
+{  text-align: center;
+   font-size: 6em;
+   text-decoration: underline;
+   color: #f4d020;
+   background-color: #701931;
+}
+
+table
+{
+  border: solid black .1em;
+  padding: .2em;
+  margin-bottom: 1em;
+  width: 50%;
+}
+
+td{
+    border: solid black .1em;
+    padding: .1em;    
+}
+td.credits{
+  font-size:1.2em;
+  font-weight: bold;
+}
+
+/*CHECKSHEET TABLES*/
+.courseTable
+{
+  text-align: left;
+  font-size: 1.2em;
+}
+
+input.course {
+  width:20%;
+  padding:0;
+  margin:0;
+  float:right;
+}
+input.courseName {
+  width:98%;
+  padding:0;
+  margin:0;
+
+}
+
+input.grades
+{
+    width:10%;
+}
+
+input.credits
+{
+    width:10%;
+}
