@@ -11,6 +11,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
+  //declarations: [ChecksheetComponent],
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
