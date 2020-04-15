@@ -8,8 +8,8 @@ footer
 {  text-align: center;
    font-size: 6em;
    text-decoration: underline;
-   color: #f4d020;
-   background-color: #701931;
+   color: var(--ku-gold);
+   background-color: var(--ku-red); 
 }
 
 table

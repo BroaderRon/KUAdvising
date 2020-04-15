@@ -1,9 +1,15 @@
+/*--VARIABLES--*/
+:root{
+    --ku-gold: #f4d020;
+    --ku-red: #701931;
+}
+
 header h1{
     text-align: center;
     font-size: 6em;
     text-decoration: underline;
-    color: #f4d020;
-    background-color: #701931;  
+    color: var(--ku-gold);
+    background-color: var(--ku-red);  
   }
 
  ul{
@@ -18,18 +24,21 @@ header h1{
  li a {
      padding: 1em;
      text-decoration: none; 
-     color: #ffffff
+     color: #ffffff;
+     font-size: 30px;
 
  }
 
  li:hover a {
-     color: #f4d020;
+     color: var(--ku-gold);
      text-decoration: underline;
      
  }
 
+ /*--CLASSES--*/
  .Banner {
-    background-color: #701931; 
+    background-color: var(--ku-red);  
+    overflow: hidden;
 
  }
 
