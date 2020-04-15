@@ -4,10 +4,18 @@
   padding: 0px;
 }
 
-body{
-  background-color:grey;
+
+header{
+
 }
 
+header h1{
+  text-align: center;
+  font-size: 6em;
+  text-decoration: underline;
+  color: #f4d020;
+  background-color: #701931;  
+}
 
 footer
 {  text-align: center;
