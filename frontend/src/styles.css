@@ -1,1 +1,40 @@
-/* You can add global styles to this file, and also import other style files */
+header h1{
+    text-align: center;
+    font-size: 6em;
+    text-decoration: underline;
+    color: #f4d020;
+    background-color: #701931;  
+  }
+
+ ul{
+     list-style-type: none;
+     margin: 0;
+     display: flex;
+ }
+
+ nav {
+     float: right;
+ }
+ li a {
+     padding: 1em;
+     text-decoration: none; 
+     color: #ffffff
+
+ }
+
+ li:hover a {
+     color: #f4d020;
+     text-decoration: underline;
+     
+ }
+
+ .Banner {
+    background-color: #701931; 
+
+ }
+
+ .MainBody {
+     width: 90%;
+     margin: 0 auto;
+     margin-top: 70px;
+ }
