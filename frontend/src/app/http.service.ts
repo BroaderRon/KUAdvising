@@ -14,4 +14,7 @@ export class HttpService {
   getEnrolled(id){
     return this.http.get(this.link + 'enroll/' + id)
   }
+  getCourse(dept,CourseNum){
+    return this.http.get(this.link + 'course/' + dept+'/'+CourseNum)
+  }
 }

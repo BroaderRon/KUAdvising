@@ -13,6 +13,7 @@ export class ChecksheetComponent implements OnInit {
   constructor(private data: DataService,private _http: HttpService) { }
   message;
   Enrolled: Object;
+  courseN: Object;
 
   sheet = new FormGroup({
       AD1: new FormControl(''),
@@ -67,27 +68,34 @@ export class ChecksheetComponent implements OnInit {
     this._http.getEnrolled(this.message).subscribe((data) => {
       this.Enrolled = data
       console.log(this.Enrolled);
-      this.loadSheet()
+      this.loadSheet(this.courseN)
     }
   );
-
-
   
-  this.sheet.disable()
+  //this.sheet.disable()
   }
-  loadSheet(){
+  async loadSheet(CourseN){
+    var A = 1
     for ( var enroll in this.Enrolled){
      if(this.Enrolled[enroll].Cat == "A"){
-       console.log(enroll+1)
-       var num = +enroll
-       num = num+1
-       var dept = 'AD'+num.toString()
+      await new Promise(resolve => {
+       var dept = 'AD'+A
+       var course = 'AC' +A
+       var name = 'AN' + A
        console.log(dept)
        this.sheet.controls[dept].setValue(this.Enrolled[enroll].Dept)
-}
-
-
-
+       this.sheet.controls[course].setValue(this.Enrolled[enroll].CourseNum)
+       this._http.getCourse(this.Enrolled[enroll].Dept,this.Enrolled[enroll].CourseNum).subscribe((data)=>{
+         this.courseN=data
+         console.log(JSON.parse(JSON.stringify(this.courseN)).Name)
+         this.sheet.controls[name].setValue(JSON.parse(JSON.stringify(this.courseN)).Name)
+         console.log()
+       });
+       A= A+1
+       resolve()
+      });
+    }
+    }
   }
-  }
+  
 }
