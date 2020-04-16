@@ -15,7 +15,6 @@ export class ChecksheetComponent implements OnInit {
   Enrolled: Object;
 
   sheet = new FormGroup({
-    A: new FormGroup({
       AD1: new FormControl(''),
       AC1: new FormControl(''),
       AN1: new FormControl(''),
@@ -27,9 +26,8 @@ export class ChecksheetComponent implements OnInit {
       AN3: new FormControl(''),
       AD4: new FormControl(''),
       AC4: new FormControl(''),
-      AN4: new FormControl('')
-    }),
-    B: new FormGroup({
+      AN4: new FormControl(''),
+    //B
       BD1: new FormControl(''),
       BC1: new FormControl(''),
       BN1: new FormControl(''),
@@ -38,9 +36,8 @@ export class ChecksheetComponent implements OnInit {
       BN2: new FormControl(''),
       BD3: new FormControl(''),
       BC3: new FormControl(''),
-      BN3: new FormControl('')
-    }),
-    C: new FormGroup({
+      BN3: new FormControl(''),
+    //C
       CD1: new FormControl(''),
       CC1: new FormControl(''),
       CN1: new FormControl(''),
@@ -49,9 +46,8 @@ export class ChecksheetComponent implements OnInit {
       CN2: new FormControl(''),
       CD3: new FormControl(''),
       CC3: new FormControl(''),
-      CN3: new FormControl('')
-    }),
-    D: new FormGroup({
+      CN3: new FormControl(''),
+    //D
       DD1: new FormControl(''),
       DC1: new FormControl(''),
       DN1: new FormControl(''),
@@ -61,9 +57,9 @@ export class ChecksheetComponent implements OnInit {
       DD3: new FormControl(''),
       DC3: new FormControl(''),
       DN3: new FormControl('')
-    })
   })
-
+  
+  
   ngOnInit() {
     //used to get selected student
     this.data.currentMessage.subscribe(message => this.message = message);
@@ -71,10 +67,27 @@ export class ChecksheetComponent implements OnInit {
     this._http.getEnrolled(this.message).subscribe((data) => {
       this.Enrolled = data
       console.log(this.Enrolled);
+      this.loadSheet()
     }
   );
 
+
+  
+  this.sheet.disable()
   }
+  loadSheet(){
+    for ( var enroll in this.Enrolled){
+     if(this.Enrolled[enroll].Cat == "A"){
+       console.log(enroll+1)
+       var num = +enroll
+       num = num+1
+       var dept = 'AD'+num.toString()
+       console.log(dept)
+       this.sheet.controls[dept].setValue(this.Enrolled[enroll].Dept)
+}
 
 
+
+  }
+  }
 }

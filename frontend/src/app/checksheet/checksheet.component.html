@@ -1,9 +1,10 @@
-<p>{{ message }}</p>
+<p (onload)= "clickeven()">{{ message }}</p>
+<button (click)="clickeven()">select</button>
 <div id="container">
 
 <body>
 
-  <form>
+  <form [formGroup]="sheet">
     <!-- Table 1 -->
     <table align="center">
       <thead>
@@ -76,24 +77,24 @@
         </tr>
         
         <tr class="courseTable"> <!--Row 4 -->
-          <td>1: composition 100 <input class="course" name="AD1"> <input class="course" name="AC1"></td>
-          <td > <input class="courseName"> </td>        
+          <td>1: composition 100 <input class="course" name="AD1" formControlName="AD1"> <input class="course" name="AC1" formControlName="AC1">
+          <td > <input class="courseName" formControlName="AN1"> </td>        
           <td align="right" colspan="3" ><input class="grades"></td>
-          <td align="right"><input class="credits"></td>
+          <td align="right"><input class="credits"></td><button>edit</button>
         </tr>
         
         <tr class="courseTable"> <!--Row 5 -->
           <td>2: composition 200 level CMP 2_ <input class="course"></td>
           <td > <input class="courseName"> </td>        
           <td align="right" colspan="3"><input class="grades"></td>
-          <td align="right"><input class="credits"></td>
+          <td align="right"><input class="credits"></td><button>edit</button>
         </tr>
         
         <tr class="courseTable"> <!--Row 5 -->
           <td>3: Speaking <input class="course"></td>      
           <td> <input class="courseName"> </td>
           <td align="right" colspan="3"><input class="grades"></td>
-          <td align="right"><input class="credits"></td>
+          <td align="right"><input class="credits"></td><button>edit</button>
         </tr>
         
         <tr class="courseTable"> <!--Row 5 -->
@@ -101,7 +102,7 @@
               or from the approved list <input class="course"></td>    
           <td > <input class="courseName"></td>
           <td align="right" colspan="3"><input class="grades"></td>
-          <td align="right"><input class="credits"></td>
+          <td align="right"><input class="credits"></td><button>edit</button>
         </tr>
         
         <tr class="courseTable"> <!--Row 6 -->
@@ -252,29 +253,9 @@
 
       </tbody>
     </table>
-    <!-- Login Table -->
-    <table align="center" style="border: none">
-      
-      <tr>
-        <td colspan="4">
-         <p>
-            Login Below
-         <p>
-        </td>
-      </tr>
-  
-      <tr>
-        <td>
-          Email: <input> 
-        </td>
+    
 
-        <td>
-          Password: <input> 
-        </td>
-      </tr>
 
-   
-    </table>
   
   </form>
 
