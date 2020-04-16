@@ -1,7 +1,15 @@
+/*--ID--*/
 #container
 {
   margin-top: -4em;
   padding: 0px;
+}
+
+#RightRow
+{
+  display: inline;
+  flex-direction: row;
+  margin: 5;
 }
 
 footer
@@ -40,7 +48,7 @@ input.course {
   width:20%;
   padding:0;
   margin:0;
-  float:right;
+  text-align: center;
 }
 input.courseName {
   width:98%;
