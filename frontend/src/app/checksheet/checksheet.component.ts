@@ -68,13 +68,13 @@ export class ChecksheetComponent implements OnInit {
     this._http.getEnrolled(this.message).subscribe((data) => {
       this.Enrolled = data
       console.log(this.Enrolled);
-      this.loadSheet(this.courseN)
+      this.loadSheet()
     }
   );
   
-  //this.sheet.disable()
+  this.sheet.disable()
   }
-  async loadSheet(CourseN){
+  async loadSheet(){
     var A = 1
     for ( var enroll in this.Enrolled){
      if(this.Enrolled[enroll].Cat == "A"){
