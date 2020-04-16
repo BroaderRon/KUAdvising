@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { DataService } from "../cur-user.service";
 import { FormControl, FormGroup } from '@angular/forms';
+import { HttpService } from '../http.service';
 
 @Component({
   selector: 'app-checksheet',
@@ -9,8 +10,9 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 
 export class ChecksheetComponent implements OnInit {
-  constructor(private data: DataService) { }
+  constructor(private data: DataService,private _http: HttpService) { }
   message;
+  Enrolled: Object;
 
   sheet = new FormGroup({
     A: new FormGroup({
@@ -63,7 +65,14 @@ export class ChecksheetComponent implements OnInit {
   })
 
   ngOnInit() {
-    this.data.currentMessage.subscribe(message => this.message = message)
+    //used to get selected student
+    this.data.currentMessage.subscribe(message => this.message = message);
+
+    this._http.getEnrolled(this.message).subscribe((data) => {
+      this.Enrolled = data
+      console.log(this.Enrolled);
+    }
+  );
 
   }
 

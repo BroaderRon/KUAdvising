@@ -11,7 +11,7 @@ export class HttpService {
   getStudent() {
     return this.http.get(this.link + 'student')
   }
-  getEnrolled(id:string){
+  getEnrolled(id){
     return this.http.get(this.link + 'enroll/' + id)
   }
 }

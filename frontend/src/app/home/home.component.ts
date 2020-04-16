@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
 
   constructor(private _http: HttpService,private router: Router,private data: DataService) { }
 
-  message: string;
+  message;
 
   ngOnInit() {
     this._http.getStudent().subscribe((data) => {
