@@ -3,6 +3,7 @@
 <div id="container">
 
 <body>
+  
 
   <form [formGroup]="sheet">
     <!-- Table 1 -->
@@ -91,10 +92,10 @@
         </tr>
         
         <tr class="courseTable"> <!--Row 5 -->
-          <td>3: Speaking <input class="course"></td>      
-          <td> <input class="courseName"> </td>
+          <td>3: Speaking<div id="RightRow"><input class="course" name="AD3" formControlName="AD3"> <input class="course" name="AC3" formControlName="AC3"></div></td>      
+          <td> <input class="courseName" formControlName="AN3"> </td>
           <td align="right" colspan="3"><input class="grades"></td>
-          <td align="right"><input class="credits"></td><button>edit</button>
+          <td align="right"><input class="credits"></td><button (click)='toggle("AD3","AC3","AN3","A")'>edit</button>
         </tr>
         
         <tr class="courseTable"> <!--Row 5 -->

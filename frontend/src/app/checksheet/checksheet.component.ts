@@ -2,11 +2,12 @@ import { Component, OnInit, Input } from '@angular/core';
 import { DataService } from "../cur-user.service";
 import { FormControl, FormGroup } from '@angular/forms';
 import { HttpService } from '../http.service';
-
+import {EnrollData,EnrollResData} from './enrollSubmit'
 @Component({
   selector: 'app-checksheet',
   templateUrl: './checksheet.component.html',
   styleUrls: ['./checksheet.component.css']
+  
 })
 
 export class ChecksheetComponent implements OnInit {
@@ -14,6 +15,7 @@ export class ChecksheetComponent implements OnInit {
   message;
   Enrolled: Object;
   courseN: Object;
+  eResData: EnrollResData;
 
   sheet = new FormGroup({
       AD1: new FormControl(''),
@@ -76,6 +78,9 @@ export class ChecksheetComponent implements OnInit {
   }
   async loadSheet(){
     var A = 1
+    var B = 1
+    var C = 1
+    var D = 1
     for ( var enroll in this.Enrolled){
      if(this.Enrolled[enroll].Cat == "A"){
       await new Promise(resolve => {
@@ -97,5 +102,35 @@ export class ChecksheetComponent implements OnInit {
     }
     }
   }
+  submitData(D: string,C: string,N: string, Cat: string){
+    var enrollSub = new EnrollData
+    enrollSub.sid = this.message
+    enrollSub.Dept = this.sheet.get(D).value
+    enrollSub.CourseNum = this.sheet.get(C).value
+    enrollSub.Cat = Cat
+    enrollSub.Grade = 'NA'
+    enrollSub.Semester = 'F20'
+    this._http.postEnroll(enrollSub).subscribe((res: EnrollResData)=> {
+      this.eResData = res;
+      console.log(this.eResData.RESULT)
+    })
+
+
+  }
+  toggle(D: string,C: string,N: string,Cat: string){
+    if(this.sheet.get(D).disabled){
+      this.sheet.get(D).enable()
+      this.sheet.get(C).enable()
+      this.sheet.get(N).enable()
+    }
+    else{
+      this.sheet.get(D).disable()
+      this.sheet.get(C).disable()
+      this.sheet.get(N).disable()
+      this.submitData(D,C,N,Cat)
+
+    }
+  }
+
   
 }

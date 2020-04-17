@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import {EnrollData,EnrollResData} from './checksheet/enrollSubmit'
+
 
 @Injectable({
   providedIn: 'root'
@@ -16,5 +18,8 @@ export class HttpService {
   }
   getCourse(dept,CourseNum){
     return this.http.get(this.link + 'course/' + dept+'/'+CourseNum)
+  }
+  postEnroll(postE: EnrollData){
+    return this.http.post(this.link+ 'enroll', postE)
   }
 }
