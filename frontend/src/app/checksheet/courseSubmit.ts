@@ -1,6 +1,5 @@
-export class EnrollData{
-    sid: number;
-    Dept: string;
+export class CourseData{
     CourseNum: number;
-    Cat: string;
+    Dept: string;
+    Name: string;
 }

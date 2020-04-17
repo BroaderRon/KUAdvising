@@ -3,6 +3,9 @@ import { DataService } from "../cur-user.service";
 import { FormControl, FormGroup } from '@angular/forms';
 import { HttpService } from '../http.service';
 import {EnrollData,EnrollResData} from './enrollSubmit'
+import {CourseData} from './courseSubmit'
+
+
 @Component({
   selector: 'app-checksheet',
   templateUrl: './checksheet.component.html',
@@ -16,6 +19,7 @@ export class ChecksheetComponent implements OnInit {
   Enrolled: Object;
   courseN: Object;
   eResData: EnrollResData;
+  cResData: CourseData;
 
   sheet = new FormGroup({
       AD1: new FormControl(''),
@@ -102,7 +106,7 @@ export class ChecksheetComponent implements OnInit {
     }
     }
   }
-  submitData(D: string,C: string,N: string, Cat: string){
+  submitEnroll(D: string,C: string,N: string, Cat: string){
     var enrollSub = new EnrollData
     enrollSub.sid = this.message
     enrollSub.Dept = this.sheet.get(D).value
@@ -113,7 +117,21 @@ export class ChecksheetComponent implements OnInit {
     this._http.postEnroll(enrollSub).subscribe((res: EnrollResData)=> {
       this.eResData = res;
       console.log(this.eResData.RESULT)
-    })
+      if(this.eResData.RESULT == 'FALSE'){
+        var courseSub = new CourseData;
+        courseSub.CourseNum = enrollSub.CourseNum;
+        courseSub.Dept = enrollSub.Dept;
+        courseSub.Name = this.sheet.get(N).value;
+        this._http.postCourse(courseSub).subscribe((res: CourseData) =>{
+          this.cResData = res;
+          console.log(this.cResData)
+          this._http.postEnroll(enrollSub).subscribe((res: EnrollResData)=>{
+            this.eResData = res;
+            console.log(this.eResData.RESULT)
+          })
+        })
+      }
+    });
 
 
   }
@@ -127,7 +145,7 @@ export class ChecksheetComponent implements OnInit {
       this.sheet.get(D).disable()
       this.sheet.get(C).disable()
       this.sheet.get(N).disable()
-      this.submitData(D,C,N,Cat)
+      this.submitEnroll(D,C,N,Cat)
 
     }
   }
