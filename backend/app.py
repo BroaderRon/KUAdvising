@@ -284,23 +284,27 @@ def get_Senrolled(sid):
  #update a enroll entry
 @app.route('/enroll/<sid>/<KDept>/<KCourseNum>', methods=['PUT'])
 def update_Enroll(sid,KDept,KCourseNum):
-  enrollUP = Enroll.query.get((sid,KDept,KCourseNum))
-  sid = request.json['sid']
-  Dept = request.json['Dept']
-  CourseNum = request.json['CourseNum']
-  Semester = request.json['Semester']
-  Grade = request.json['Grade']
-  Cat = request.json['Cat']
+  exists = db.session.query(db.exists().where((Course.CourseNum ==request.json['CourseNum'])and(Course.Dept == request.json['Dept']))).scalar()
+  if exists:
+    enrollUP = Enroll.query.get((sid,KDept,KCourseNum))
+    sid = request.json['sid']
+    Dept = request.json['Dept']
+    CourseNum = request.json['CourseNum']
+    Semester = request.json['Semester']
+    Grade = request.json['Grade']
+    Cat = request.json['Cat']
 
-  enrollUP.sid = sid
-  enrollUP.Dept = Dept
-  enrollUP.CourseNum = CourseNum
-  enrollUP.Semester = Semester
-  enrollUP.Grade = Grade
-  enrollUP.Cat = Cat
-
-  db.session.commit()
-  return enroll_schema.jsonify(enrollUP)
+    enrollUP.sid = sid
+    enrollUP.Dept = Dept
+    enrollUP.CourseNum = CourseNum
+    enrollUP.Semester = Semester
+    enrollUP.Grade = Grade
+    enrollUP.Cat = Cat
+    db.session.commit()
+    retT = {"RESULT": "TRUE"}
+    return jsonify(retT)
+  retF= {"RESULT":"FALSE"}
+  return jsonify(retF)
   
 if __name__ == '__main__':
     app.run(debug=True)

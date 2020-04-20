@@ -25,4 +25,8 @@ export class HttpService {
   postCourse(postC: CourseData){
     return this.http.post(this.link+ 'course', postC)
   }
+  putEnroll(putE: EnrollData, oldE: EnrollData){
+    
+    return this.http.put(this.link+ 'enroll/' + oldE.sid + '/' + oldE.Dept+ '/' + oldE.CourseNum, putE)
+  }
 }
