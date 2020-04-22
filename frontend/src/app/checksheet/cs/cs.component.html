@@ -25,7 +25,8 @@
             <td>{{i+1}}<div id="RightRow"><input class="course" value={{data.Dept}}> <input class="course" value={{data.CourseNum}}></div></td>
             <td> <input class="courseName" value={{data.Name}}></td>      
             <td align="right" colspan="3"><input class="grades"></td>
-            <td align="right"><input class="credits" ></td> <button (click)='toggle("CD1","CC1","CN1", "CG1", "CS1","C")'>edit</button><input type="checkbox"  (change)="onCheckboxChange($event)" />
+            <td align="right"><input class="credits" ></td> <button (click)='toggle("CD1","CC1","CN1", "CG1", "CS1","C")'>edit</button>
+            <td align="right"><input type="checkbox"  (change)="onCheckboxChange($event)" /></td>
           </tr>
       
     </tbody>
