@@ -4,6 +4,15 @@
     --ku-red: #701931;
 }
 
+/*--ID--*/
+#RightRow
+{
+  display: inline;
+  flex-direction: row;
+  margin: 5;
+}
+
+ /*--TAGS--*/
 header h1{
     text-align: center;
     font-size: 6em;
@@ -12,7 +21,7 @@ header h1{
     background-color: var(--ku-red);  
   }
 
-  footer
+footer
 {  text-align: center;
    font-size: 6em;
    text-decoration: underline;
@@ -20,16 +29,16 @@ header h1{
    background-color: var(--ku-red); 
 }
 
- ul{
+ul{
      list-style-type: none;
      margin: 0;
      display: flex;
  }
 
- nav {
+nav {
      float: right;
  }
- li a {
+li a {
      padding: 1em;
      text-decoration: none; 
      color: #ffffff;
@@ -37,21 +46,66 @@ header h1{
 
  }
 
- li:hover a {
+li:hover a {
      color: var(--ku-gold);
      text-decoration: underline;
      
  }
 
  /*--CLASSES--*/
- .Banner {
+.Banner {
     background-color: var(--ku-red);  
     overflow: hidden;
-
  }
 
- .MainBody {
+.MainBody {
      width: 90%;
      margin: 0 auto;
      margin-top: 70px;
  }
+
+ /*--TABLE CSS--*/
+ 
+table
+{
+  border: solid black .1em;
+  padding: .2em;
+  margin-bottom: 1em;
+  width: 50%;
+}
+
+td{
+    border: solid black .1em;
+    padding: .1em;    
+}
+td.credits{
+  font-size:1.2em;
+  font-weight: bold;
+}
+ .courseTable
+{
+  text-align: left;
+  font-size: 1.2em;
+}
+
+input.course {
+  width:20%;
+  padding:0;
+  margin:0;
+  text-align: center;
+}
+input.courseName {
+  width:98%;
+  padding:0;
+  margin:0;
+}
+
+input.grades
+{
+    width:40%;
+}
+
+input.credits
+{
+    width:40%;
+}
