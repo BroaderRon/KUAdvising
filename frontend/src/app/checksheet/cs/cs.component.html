@@ -21,7 +21,7 @@
         <td> CR</td>
     </tr>
         <tr  *ngFor="let data of Courses; let i=index" class="courseTable"> <!--Row 4 -->
-            <ng-container *ngIf="Enrolled.includes(data);else elseBlock">
+            <ng-container *ngIf="Enrolled.has(data.CourseNum);else elseBlock">
             <td>{{i+1}}<div id="RightRow"><input class="course" value={{data.Dept}}> <input class="course" value={{data.CourseNum}}></div></td>
             <td> <input class="courseName" value={{data.Name}}></td>      
             <td align="right" colspan="3"><input class="grades"></td>

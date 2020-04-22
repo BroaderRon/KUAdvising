@@ -20,15 +20,11 @@ export class CSComponent implements OnInit {
         checkArray: this.fb.array([])
       })
     }
-    Enrolled: EnrollData;
+    Enrolled: Map<any,EnrollData>;
   ngOnInit() {
     this.data.currentMessage.subscribe(message => this.message = message);
 
-    this._http.getEnrolled(this.message).subscribe((data: EnrollData ) => {
-    this.Enrolled = data
-      console.log(this.Enrolled);
-    }
-  );
+   this.Enrolled = this.getEnroll()
 
   }
 
@@ -47,5 +43,20 @@ export class CSComponent implements OnInit {
         i++;
       });
     }
+  }
+  getEnroll(){
+    let temp = new Map<any, EnrollData>()
+    this._http.getEnrolled(this.message).subscribe((data: EnrollData ) => {
+     
+    for(let i in data){
+      if(data[i].Dept == 'CSC'){
+        temp.set(data[i].CourseNum,data[i])
+        console.log("ADDING: "+ data[i])
+      }
+    }
+      //console.log(this.Enrolled);
+    }
+  );
+  return temp;
   }
 }
