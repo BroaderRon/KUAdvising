@@ -1,5 +1,5 @@
 <form  [formGroup]="form">
-<table align="center">
+<table align="right">
     <thead>
         <tr class="courseTable"> <!--Row 1 -->
           <th colspan="4" > <span style="font-size: 2em">[C]</span> Understanding science & technology </th>
@@ -21,12 +21,20 @@
         <td> CR</td>
     </tr>
         <tr  *ngFor="let data of Courses; let i=index" class="courseTable"> <!--Row 4 -->
-            
+            <ng-container *ngIf="Enrolled.includes(data);else elseBlock">
+            <td>{{i+1}}<div id="RightRow"><input class="course" value={{data.Dept}}> <input class="course" value={{data.CourseNum}}></div></td>
+            <td> <input class="courseName" value={{data.Name}}></td>      
+            <td align="right" colspan="3"><input class="grades"></td>
+            <td align="right"><input class="credits" ></td> <button (click)='toggle("CD1","CC1","CN1", "CG1", "CS1","C")'>edit</button>
+            <td align="right"><input type="checkbox"  (change)="onCheckboxChange($event)"  checked="true"/></td>
+            </ng-container>
+             <ng-template #elseBlock>
             <td>{{i+1}}<div id="RightRow"><input class="course" value={{data.Dept}}> <input class="course" value={{data.CourseNum}}></div></td>
             <td> <input class="courseName" value={{data.Name}}></td>      
             <td align="right" colspan="3"><input class="grades"></td>
             <td align="right"><input class="credits" ></td> <button (click)='toggle("CD1","CC1","CN1", "CG1", "CS1","C")'>edit</button>
             <td align="right"><input type="checkbox"  (change)="onCheckboxChange($event)" /></td>
+             </ng-template>
           </tr>
       
     </tbody>
