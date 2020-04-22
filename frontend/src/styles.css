@@ -12,6 +12,14 @@ header h1{
     background-color: var(--ku-red);  
   }
 
+  footer
+{  text-align: center;
+   font-size: 6em;
+   text-decoration: underline;
+   color: var(--ku-gold);
+   background-color: var(--ku-red); 
+}
+
  ul{
      list-style-type: none;
      margin: 0;
