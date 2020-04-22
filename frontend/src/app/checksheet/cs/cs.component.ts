@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {CourseData} from '../courseSubmit'
 import { FormGroup, FormBuilder, FormArray, FormControl } from '@angular/forms';
+import { DataService } from 'src/app/cur-user.service';
+import { HttpService } from 'src/app/http.service';
+import { EnrollData } from '../enrollSubmit';
 
 @Component({
   selector: 'app-cs',
@@ -11,16 +14,25 @@ export class CSComponent implements OnInit {
     form: FormGroup;
     Courses: Array<CourseData> =[{CourseNum: 135, Dept: 'CSC', Name: "Computer Science 1"},
                                  {CourseNum: 125, Dept: 'CSC', Name: "Discrete Math 1"}]
-    constructor(private fb: FormBuilder) {
+  message: any;
+    constructor(private fb: FormBuilder,private data: DataService,private _http: HttpService) {
       this.form = this.fb.group({
         checkArray: this.fb.array([])
       })
     }
-
+    Enrolled: EnrollData;
   ngOnInit() {
+    this.data.currentMessage.subscribe(message => this.message = message);
+
+    this._http.getEnrolled(this.message).subscribe((data: EnrollData ) => {
+    this.Enrolled = data
+      console.log(this.Enrolled);
+    }
+  );
+
   }
 
-  onCheckboxChange(e) {
+  onCheckboxChange(e,name,coursenum,dept,grade,semester) {
     const checkArray: FormArray = this.form.get('checkArray') as FormArray;
   
     if (e.target.checked) {
