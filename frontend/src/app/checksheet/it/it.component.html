@@ -1,0 +1,32 @@
+<app-checksheet></app-checksheet>
+
+<!--IT Checksheet-->
+<form [formGroup]="form" (ngSubmit)="submitForm()" novalidate>
+<table align="center">
+  <thead>
+    <tr class="courseTable"> <!--Row 1 -->
+      <th colspan="4" > Required Courses </th>
+    </tr>
+  </thead>
+  <tbody>    
+    
+    <tr class="courseTable"> <!--Row 3 -->
+      <td style="font-weight: bold"> Course </td>
+      <td style="font-weight: bold"> CR </td>
+      <td align="center" colspan="3">Grade</td>
+      <td align="center"> Sem</td>
+    </tr>
+    
+    <tr *ngFor="let data of Data; let i=index" class="courseTable"> <!--Row 4 -->
+      <td><input type="checkbox" (change)="onCheckboxChange($event)" />{{data.name}}</td>
+      <td align="center"> 3 </td>        
+      <td align="right" colspan="3" ><input class="grades"></td>
+      <td align="right"><input class="credits" ></td><button>edit</button>
+    </tr>
+    
+    
+  </tbody>
+</table>
+
+<input type="submit" value="Submit">
+</form>
