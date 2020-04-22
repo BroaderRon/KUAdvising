@@ -1,0 +1,33 @@
+<form  [formGroup]="form">
+<table align="center">
+    <thead>
+        <tr class="courseTable"> <!--Row 1 -->
+          <th colspan="4" > <span style="font-size: 2em">[C]</span> Understanding science & technology </th>
+          <td> Credits required:</td>
+          <td class="credits">9-12</td>
+        </tr>
+      </thead>
+    <tbody>    
+      <tr class="courseTable"> <!--Row 2 -->
+        <td colspan="4"> These courses meet SLO (1) & (5) </td>
+        <td>Credits Earned</td>
+        <td align="right"><input class="credits"></td>
+      </tr>
+      
+      <tr class="courseTable"> <!--Row 3 -->
+        <td style="font-weight: bold"> Course Number </td>
+        <td style="font-weight: bold"> Course Name </td>
+        <td align="right" colspan="3">GR</td>
+        <td> CR</td>
+    </tr>
+        <tr  *ngFor="let data of Courses; let i=index" class="courseTable"> <!--Row 4 -->
+            
+            <td>{{i+1}}<div id="RightRow"><input class="course" value={{data.Dept}}> <input class="course" value={{data.CourseNum}}></div></td>
+            <td> <input class="courseName" value={{data.Name}}></td>      
+            <td align="right" colspan="3"><input class="grades"></td>
+            <td align="right"><input class="credits" ></td> <button (click)='toggle("CD1","CC1","CN1", "CG1", "CS1","C")'>edit</button><input type="checkbox"  (change)="onCheckboxChange($event)" />
+          </tr>
+      
+    </tbody>
+    </table>
+</form>

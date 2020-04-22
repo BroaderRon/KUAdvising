@@ -10,6 +10,7 @@ import { RegisterComponent } from './register/register.component';
 import { HttpClientModule } from '@angular/common/http'; 
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CSComponent } from './checksheet/cs/cs.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     HomeComponent,
     ChecksheetComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    CSComponent
   ],
   imports: [
     BrowserModule,
