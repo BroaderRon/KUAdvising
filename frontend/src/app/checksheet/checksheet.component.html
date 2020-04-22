@@ -6,52 +6,6 @@
   
 
   <form [formGroup]="sheet">
-     <!-- Table D -->
-     <table align="right" style="float: right;">
-      <thead>
-        <tr class="courseTable"> <!--Row 1 -->
-          <th colspan="4" > <span style="font-size: 2em">[D]</span> Understanding & creating ideas </th>
-          <td> Credits required:</td>
-          <td class="credits">9</td>
-        </tr>
-      </thead>
-      <tbody>    
-        <tr class="courseTable"> <!--Row 2 -->
-          <td colspan="4"> These courses meet SLO (4) & (6) </td>
-          <td>Credits Earned</td>
-          <td align="right"><input class="credits"></td>
-        </tr>
-        
-        <tr class="courseTable"> <!--Row 3 -->
-          <td style="font-weight: bold"> Course Number </td>
-          <td style="font-weight: bold"> Course Name </td>
-          <td align="right" colspan="3">GR</td>
-          <td> CR</td>
-        </tr>
-        
-        <tr class="courseTable"> <!--Row 4 -->
-          <td>1: <div id="RightRow"><input class="course" > <input class="course" ></div></td>
-          <td> <input class="courseName" ></td>             
-          <td align="right" colspan="3"><input class="grades" ></td>
-          <td align="right"><input class="credits" ></td><button (click)='toggle("DD1","DC1","DN1", "DG1", "DS1","D")'>edit</button>
-        </tr>
-        
-        <tr class="courseTable"> <!--Row 5 -->
-          <td>2: <div id="RightRow"><input class="course" > <input class="course"></div></td>
-          <td> <input class="courseName" ></td>             
-          <td align="right" colspan="3"><input class="grades"></td>
-          <td align="right"><input class="credits" ></td><button (click)='toggle("DD2","DC2","DN2", "DG2", "DS2","D")'>edit</button>
-        </tr>
-        
-        <tr class="courseTable"> <!--Row 6 -->
-          <td>3: <div id="RightRow"><input class="course" > <input class="course" ></div></td>
-          <td> <input class="courseName" formControlName="DN3"></td>      
-          <td align="right" colspan="3"><input class="grades" ></td>
-          <td align="right"><input class="credits" ></td><button (click)='toggle("DD3","DC3","DN3", "DG3", "DS3","D")'>edit</button>
-        </tr>
-
-      </tbody>
-    </table>
     <!-- Table 1 -->
     <table align="center">
       <thead>
@@ -255,7 +209,7 @@
     
     
         <!-- Table D -->
-    <table  align="center" >
+    <table align="center">
       <thead>
         <tr class="courseTable"> <!--Row 1 -->
           <th colspan="4" > <span style="font-size: 2em">[D]</span> Understanding & creating ideas </th>
@@ -299,9 +253,11 @@
         </tr>
 
       </tbody>
-    </table >
-         
+    </table>
+    
 
+
+  
   </form>
 
 </body>

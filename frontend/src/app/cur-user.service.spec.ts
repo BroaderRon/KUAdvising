@@ -1,15 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DataService } from './cur-user.service';
-import { ReactiveFormsModule } from '@angular/forms';
+import { CurUserService } from './cur-user.service';
 
-describe('DataService', () => {
-  beforeEach(() => TestBed.configureTestingModule({
-    imports: [ReactiveFormsModule]
-  }));
+describe('CurUserService', () => {
+  beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: DataService = TestBed.get(DataService);
+    const service: CurUserService = TestBed.get(CurUserService);
     expect(service).toBeTruthy();
   });
 });

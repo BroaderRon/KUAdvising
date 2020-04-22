@@ -7,10 +7,9 @@ import { HomeComponent } from './home/home.component';
 import { ChecksheetComponent } from './checksheet/checksheet.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { HttpClientModule,} from '@angular/common/http'; 
+import { HttpClientModule } from '@angular/common/http'; 
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientTestingModule} from '@angular/common/http/testing';
 
 
 @NgModule({
@@ -26,8 +25,7 @@ import { HttpClientTestingModule} from '@angular/common/http/testing';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule,
-    HttpClientTestingModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
