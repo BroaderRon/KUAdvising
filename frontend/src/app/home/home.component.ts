@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpService } from '../http.service';
 import { Router } from '@angular/router';
 import { DataService } from "../cur-user.service";
+import {ChecksheetComponent} from"../checksheet/checksheet.component"
 
 @Component({
   selector: 'app-home',
@@ -11,7 +12,7 @@ import { DataService } from "../cur-user.service";
 export class HomeComponent implements OnInit {
 
   Stus: Object;
-
+  //@ViewChild(ChecksheetComponent,{static:false}) checksheet: ChecksheetComponent ; 
   constructor(private _http: HttpService,private router: Router,private data: DataService) { }
 
   message;
