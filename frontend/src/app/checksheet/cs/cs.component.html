@@ -27,14 +27,14 @@
             <td> <input class="courseName" [disabled]="enableStat[i]" value={{data.Name}}></td>      
             <td align="right" colspan="3"><input class="grades" [disabled]="enableStat[i]" [value]=Enrolled.get(data.CourseNum).Grade></td>
             <td align="right"><input class="credits" [disabled]="enableStat[i]" [value]=Enrolled.get(data.CourseNum).Semester></td> <button (click)='toggle(i)'>edit</button>
-            <td align="right"><input type="checkbox" [disabled]="enableStat[i]"  name ="box" (change)="onCheckboxChange($event,data.Name,data.CoureNum,data.dept,grade,sem,box)"  checked="true"/></td>
+            <td align="right"><input type="checkbox" [disabled]="enableStat[i]"  name ="box" (change)="onCheckboxChange($event,data.Name,data.CourseNum,data.dept,grade.value,SEM.value,box)"  checked="true"/></td>
             </ng-container>
              <ng-template #elseBlock>
             <td>{{i+1}}<div id="RightRow"><input class="course" [disabled]="enableStat[i]" value={{data.Dept}}> <input class="course" value={{data.CourseNum}} [disabled]="enableStat[i]"></div></td>
             <td> <input class="courseName" value={{data.Name}} [disabled]="enableStat[i]" ></td>      
-            <td align="right" colspan="3"><input class="grades" name="grade" [disabled]="enableStat[i]"></td>
-            <td align="right"><input class="credits"  name = "sem" [disabled]="enableStat[i]"></td> <button (click)='toggle(i)'>edit</button>
-            <td align="right"><input type="checkbox" name = "box" [disabled]="enableStat[i]" (change)="onCheckboxChange($event,data.Name,data.CoureNum,data.dept,grade,sem,box)" /></td>
+            <td align="right" colspan="3"><input class="grades" #grade [disabled]="enableStat[i]" value=""></td>
+            <td align="right"><input class="credits"  #SEM [disabled]="enableStat[i]" value=""></td> <button (click)='toggle(i)'>edit</button>
+            <td align="right"><input type="checkbox" name = "box" [disabled]="enableStat[i]" (change)="onCheckboxChange($event,data.Name,data.CourseNum,data.Dept,grade.value,SEM.value,box,'M')" /></td>
              </ng-template>
           </tr>
       
