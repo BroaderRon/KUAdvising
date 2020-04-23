@@ -13,10 +13,9 @@
 .CSEC{
     width: 46%;
     height: 30%;
-   
-    
 }
+
 #container {
-    height: 1000px;
-    width: 1200px;
-   }
+    margin: 0 auto;
+    width: 1000px; 
+}
