@@ -15,10 +15,12 @@
     width: 47%;
     height: 40%;
     float: left;
+    margin-top: ;
 }
 
 #container {
     margin: 0 auto;
     width: 1300px; 
+    height: auto;
     position: relative;
 }
