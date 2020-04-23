@@ -12,9 +12,20 @@ import { EnrollData } from '../enrollSubmit';
 })
 export class CSComponent implements OnInit {
     form: FormGroup;
-    Courses: Array<CourseData> =[{CourseNum: 135, Dept: 'CSC', Name: "Computer Science 1"},
-                                 {CourseNum: 125, Dept: 'CSC', Name: "Discrete Math 1"}]
+    enableStat: Array<boolean>;
+    Courses: Array<CourseData> =[{CourseNum: 125, Dept: 'CSC', Name: "Discrete Math 1"},
+                                 {CourseNum: 225, Dept: 'CSC', Name: "Discrete Math 2"},
+                                 {CourseNum: 135, Dept: 'CSC', Name: "Computer Science 1"},
+                                 {CourseNum: 136, Dept: 'CSC', Name: "Computer Science 1"},
+                                 {CourseNum: 235, Dept: 'CSC', Name: "COMP ORG & ASSEMBLY LANG"},
+                                 {CourseNum: 237, Dept: 'CSC', Name: "Data Structures"},
+                                 {CourseNum: 310, Dept: 'CSC', Name: "Programming Languages"},
+                                 {CourseNum: 328, Dept: 'CSC', Name: "Network Programming"},
+                                 {CourseNum: 343, Dept: 'CSC', Name: "Operating Systems"},
+                                 {CourseNum: 354, Dept: 'CSC', Name: "Software Engineering 1"},
+                                 {CourseNum: 355, Dept: 'CSC', Name: "Software Engineering 2"},]
   message: any;
+  isDisabled: boolean;
     constructor(private fb: FormBuilder,private data: DataService,private _http: HttpService) {
       this.form = this.fb.group({
         checkArray: this.fb.array([])
@@ -23,14 +34,18 @@ export class CSComponent implements OnInit {
     Enrolled: Map<any,EnrollData>;
   ngOnInit() {
     this.data.currentMessage.subscribe(message => this.message = message);
-
+    this.isDisabled=true;
    this.Enrolled = this.getEnroll()
-
+   var tmp = new Array<boolean>();
+   for(let i in this.Courses){
+     tmp.push(true);
+   }
+   this.enableStat = tmp;
   }
 
-  onCheckboxChange(e,name,coursenum,dept,grade,semester) {
+  onCheckboxChange(e,name,coursenum,dept,grade,semester,box) {
     const checkArray: FormArray = this.form.get('checkArray') as FormArray;
-  
+    console.log(name)
     if (e.target.checked) {
       checkArray.push(new FormControl(e.target.value));
     } else {
@@ -58,5 +73,13 @@ export class CSComponent implements OnInit {
     }
   );
   return temp;
+  }
+  toggle(index){
+    if(this.enableStat[index]){
+      this.enableStat[index] = false;
+    }
+    else{
+      this.enableStat[index] = true
+    }
   }
 }

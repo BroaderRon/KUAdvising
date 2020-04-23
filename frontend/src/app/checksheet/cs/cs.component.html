@@ -1,3 +1,4 @@
+<app-checksheet #genEd></app-checksheet>
 <form  [formGroup]="form">
 <table align="right">
     <thead>
@@ -22,18 +23,18 @@
     </tr>
         <tr  *ngFor="let data of Courses; let i=index" class="courseTable"> <!--Row 4 -->
             <ng-container *ngIf="Enrolled.has(data.CourseNum);else elseBlock">
-            <td>{{i+1}}<div id="RightRow"><input class="course" value={{data.Dept}}> <input class="course" value={{data.CourseNum}}></div></td>
-            <td> <input class="courseName" value={{data.Name}}></td>      
-            <td align="right" colspan="3"><input class="grades"></td>
-            <td align="right"><input class="credits" ></td> <button (click)='toggle("CD1","CC1","CN1", "CG1", "CS1","C")'>edit</button>
-            <td align="right"><input type="checkbox"  (change)="onCheckboxChange($event)"  checked="true"/></td>
+            <td>{{i+1}}<div id="RightRow"><input class="course" [disabled]="enableStat[i]" value={{data.Dept}}> <input class="course" value={{data.CourseNum}} [disabled]="enableStat[i]"></div></td>
+            <td> <input class="courseName" [disabled]="enableStat[i]" value={{data.Name}}></td>      
+            <td align="right" colspan="3"><input class="grades" [disabled]="enableStat[i]" [value]=Enrolled.get(data.CourseNum).Grade></td>
+            <td align="right"><input class="credits" [disabled]="enableStat[i]" [value]=Enrolled.get(data.CourseNum).Semester></td> <button (click)='toggle(i)'>edit</button>
+            <td align="right"><input type="checkbox" [disabled]="enableStat[i]"  name ="box" (change)="onCheckboxChange($event,data.Name,data.CoureNum,data.dept,grade,sem,box)"  checked="true"/></td>
             </ng-container>
              <ng-template #elseBlock>
-            <td>{{i+1}}<div id="RightRow"><input class="course" value={{data.Dept}}> <input class="course" value={{data.CourseNum}}></div></td>
-            <td> <input class="courseName" value={{data.Name}}></td>      
-            <td align="right" colspan="3"><input class="grades"></td>
-            <td align="right"><input class="credits" ></td> <button (click)='toggle("CD1","CC1","CN1", "CG1", "CS1","C")'>edit</button>
-            <td align="right"><input type="checkbox"  (change)="onCheckboxChange($event)" /></td>
+            <td>{{i+1}}<div id="RightRow"><input class="course" [disabled]="enableStat[i]" value={{data.Dept}}> <input class="course" value={{data.CourseNum}} [disabled]="enableStat[i]"></div></td>
+            <td> <input class="courseName" value={{data.Name}} [disabled]="enableStat[i]" ></td>      
+            <td align="right" colspan="3"><input class="grades" name="grade" [disabled]="enableStat[i]"></td>
+            <td align="right"><input class="credits"  name = "sem" [disabled]="enableStat[i]"></td> <button (click)='toggle(i)'>edit</button>
+            <td align="right"><input type="checkbox" name = "box" [disabled]="enableStat[i]" (change)="onCheckboxChange($event,data.Name,data.CoureNum,data.dept,grade,sem,box)" /></td>
              </ng-template>
           </tr>
       
