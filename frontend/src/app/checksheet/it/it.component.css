@@ -2,21 +2,24 @@
     /*display: inline-block;*/
     float: left;
     width: 46%;
+    height: 130px;
 }
 
 .AlignTableRight{
     /*display: inline-block;*/
     float: right;
     width: 53%;
+    height: 90px;
 }
 
 .CSEC{
     width: 46%;
     height: 30%;
+    float: left;
    
     
 }
 #container {
-    height: 1000px;
+    height: 1200px;
     width: 1200px;
    }
