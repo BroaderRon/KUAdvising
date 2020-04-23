@@ -20,7 +20,7 @@ export class ITComponent implements OnInit {
   ngOnInit() {
   }
 
-  Data: Array<any> = [
+  RCourses: Array<any> = [
     { name: 'CSC 125: DISCRETE MATH FOR CS I', CourseNum: '125', Dept: 'CSC' },
     { name: 'CSC 130: IT FUNDAMENTALS', CourseNum: '130', Dept: 'CSC' },
     { name: 'CSC 135: COMP SCI I', CourseNum: '135', Dept: 'CSC' },
@@ -37,6 +37,10 @@ export class ITComponent implements OnInit {
     { name: 'CSC 354: SOFTWARE ENGINEERING I', CourseNum: '354', Dept: 'CSC' },
     { name: 'CSC 355: SOFTWARE ENGINEERING II', CourseNum: '355', Dept: 'CSC' }
     
+  ];
+
+  CCourses: Array<any> = [
+    { name: 'MAT 105: COLLEGE ALGEBRA ', CourseNum: '105', Dept: 'MAT' }
   ];
 
   onCheckboxChange(e) {
