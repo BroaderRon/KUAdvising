@@ -1,26 +1,26 @@
 .AlignTableLeft{
     /*display: inline-block;*/
     float: left;
-    width: 47%;
+    width: 35%;
+    margin-left: 0px;
 }
 
 .AlignTableRight{
     /*display: inline-block;*/
     float: right;
-    width: 50%;
-   
+    width: 40%;
+    margin-right: 400px;
+    margin-bottom: 40px;
 }
 
 .CSEC{
-    width: 47%;
+    width: 35%;
     height: 40%;
-    float: left;
-    margin-top: ;
+    margin-left: 0px;
 }
 
 #container {
     margin: 0 auto;
-    width: 1300px; 
-    height: auto;
-    position: relative;
+    width: 1800px; 
 }
+
