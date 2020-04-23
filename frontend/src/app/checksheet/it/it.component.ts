@@ -43,6 +43,11 @@ export class ITComponent implements OnInit {
     { name: 'MAT 105: COLLEGE ALGEBRA ', CourseNum: '105', Dept: 'MAT' }
   ];
 
+  DGECourses: Array<any> = [
+    { name: 'PHI 40: INTRO TO ETHICS', CourseNum: '40', Dept: 'PHI', GE: 'B'},
+    { name: 'MAT 140: APPLIED STATISTICS', CourseNum: '140', Dept: 'MAT', GE: 'C. 2' }
+  ]
+
   onCheckboxChange(e) {
     const checkArray: FormArray = this.form.get('checkArray') as FormArray;
   
