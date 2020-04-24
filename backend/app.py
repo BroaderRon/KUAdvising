@@ -284,7 +284,11 @@ def get_Senrolled(sid):
  #update a enroll entry
 @app.route('/enroll/<sid>/<KDept>/<KCourseNum>', methods=['PUT'])
 def update_Enroll(sid,KDept,KCourseNum):
-  exists = db.session.query(db.exists().where((Course.CourseNum ==request.json['CourseNum'])and(Course.Dept == request.json['Dept']))).scalar()
+  print(request.json['Dept'])
+  print(db.session.query(db.exists().where((Course.CourseNum ==request.json['CourseNum'])and(Course.Dept == request.json['Dept']))))
+  #exists = db.session.query(db.exists().where(User.name == 'davidism')).scalar()
+  exists = db.session.query(db.exists().where(Course.CourseNum ==request.json['CourseNum'] and Course.Dept == request.json['Dept'])).scalar()
+  print(exists)
   if exists:
     enrollUP = Enroll.query.get((sid,KDept,KCourseNum))
     sid = request.json['sid']

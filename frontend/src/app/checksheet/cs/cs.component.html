@@ -1,6 +1,6 @@
 <app-checksheet #genEd></app-checksheet>
 <form  [formGroup]="form">
-<table align="right">
+<table align="center">
     <thead>
         <tr class="courseTable"> <!--Row 1 -->
           <th colspan="4" > <span style="font-size: 2em">[C]</span> Understanding science & technology </th>
@@ -21,16 +21,16 @@
         <td align="right" colspan="3">GR</td>
         <td> CR</td>
     </tr>
-        <tr  *ngFor="let data of Courses; let i=index" class="courseTable"> <!--Row 4 -->
-            <ng-container *ngIf="Enrolled.has(data.CourseNum);else elseBlock">
+        <tr  *ngFor="let data of RCourses; let i=index" class="courseTable"> <!--Row 4 -->
+            <ng-container *ngIf="EnrolledCS.has(data.CourseNum); else elseBlock">
             
             <td>{{i+1}}<div id="RightRow"><input class="course" [disabled]="enableStat[i]" value={{data.Dept}}> <input class="course" value={{data.CourseNum}} [disabled]="enableStat[i]"></div></td>
             <td> <input class="courseName" [disabled]="enableStat[i]" value={{data.Name}}></td>      
-            <td align="right" colspan="3"><input class="grades" #grade [disabled]="enableStat[i]" [value]=Enrolled.get(data.CourseNum).Grade></td>
-            <td align="right"><input class="credits" #SEM [disabled]="enableStat[i]" [value]=Enrolled.get(data.CourseNum).Semester></td> <button (click)="toggle(i,data.Name,data.CourseNum,data.Dept,grade.value,SEM.value,box,'M')">edit</button>
+            <td align="right" colspan="3"><input class="grades" #grade [disabled]="enableStat[i]" [value]=EnrolledCS.get(data.CourseNum).Grade></td>
+            <td align="right"><input class="credits" #SEM [disabled]="enableStat[i]" [value]=EnrolledCS.get(data.CourseNum).Semester></td> <button (click)="toggle(i,data.Name,data.CourseNum,data.Dept,grade.value,SEM.value,box,'M')">edit</button>
             <td align="right"><input type="checkbox" [disabled]="enableStat[i]"  name ="box" (change)="onCheckboxChange($event,i)"  [checked]="checked[i]"/></td>
             </ng-container>
-             <ng-template #elseBlock>
+            <ng-template #elseBlock>
             <td>{{i+1}}<div id="RightRow"><input class="course" [disabled]="enableStat[i]" value={{data.Dept}}> <input class="course" value={{data.CourseNum}} [disabled]="enableStat[i]"></div></td>
             <td> <input class="courseName" value={{data.Name}} [disabled]="enableStat[i]" ></td>      
             <td align="right" colspan="3"><input class="grades" #grade [disabled]="enableStat[i]" value=""></td>
@@ -40,5 +40,99 @@
           </tr>
       
     </tbody>
-    </table>
-</form>
+  </table>
+
+<form [formGroup]= "sheet">
+  <table align="center">
+    <thead>
+        <tr class="courseTable"> <!--Row 1 -->
+          <th colspan="4" > Concomitant Courses </th>
+        </tr>
+    </thead>
+    <tbody> 
+      <tr class="courseTable"> <!--Row 4 -->
+        <td> <div id="RightRow"><input class="course" name="COD1" formControlName="COD1" value="MAT"> <input class="course" name="COC1" value="260" formControlName="COC1"></div>
+        <td > <input class="courseName" formControlName="CON1" value = "LINEAR ALGEBRA"> </td>        
+        <td align="right" colspan="3" ><input class="grades" formControlName="COG1"></td>
+        <td align="right"><input class="credits" formControlName="COS1"></td><button (click)='toggle3("COD1","COC1","CON1", "COG1", "COS1", "CO","COH1")'>edit</button>
+        <td align="right"><input type="checkbox" name = "box" [disabled]="COH1" formControlName="COH1" (change)="changeH1()" [checked]="COH1" /></td>
+      </tr>
+      <tr class="courseTable"> <!--Row 4 -->
+        <td> MAT ELECTIVE HIGHER THAN 181 NOT 224<div id="RightRow"><input class="course" name="COD2" formControlName="COD2" > <input class="course" name="COC2"  formControlName="COC2"></div>
+        <td > <input class="courseName" formControlName="CON2"> </td>        
+        <td align="right" colspan="3" ><input class="grades" formControlName="COG2"></td>
+        <td align="right"><input class="credits" formControlName="COS2"></td><button (click)='toggle2("COD2","COC2","CON2", "COG2", "COS2", "CO")'>edit</button>
+      </tr>
+      <tr class="courseTable"> <!--Row 4 -->
+        <td> NATURAL SCIENCE COURSE <div id="RightRow"><input class="course" name="COD3" formControlName="COD3" > <input class="course" name="COC3"  formControlName="COC3"></div>
+        <td > <input class="courseName" formControlName="CON3"> </td>        
+        <td align="right" colspan="3" ><input class="grades" formControlName="COG3"></td>
+        <td align="right"><input class="credits" formControlName="COS3"></td><button (click)='toggle2("COD3","COC3","CON3", "COG3", "COS3", "CO")'>edit</button>
+      </tr>
+      
+    </tbody>
+  </table>
+    <table align="center">
+      <thead>
+          <tr class="courseTable"> <!--Row 1 -->
+            <th colspan="4" > RECOMENDED GEN ED Courses </th>
+          </tr>
+      </thead>
+      <tbody> 
+        <tr class="courseTable"> <!--Row 4 -->
+          <td> <div id="RightRow"><input class="course" name="DID1" formControlName="DID1" > <input class="course" name="DIC1" formControlName="DIC1"></div>
+          <td > <input class="courseName" formControlName="DIN1" > </td>        
+          <td align="right" colspan="3" ><input class="grades" formControlName="DIG1"></td>
+          <td align="right"><input class="credits" formControlName="DIS1"></td><button (click)='toggle3("DID1","DIC1","DIN1", "DIG1", "DIS1", "DI","DIH1")'>edit</button>
+          <td align="right"><input type="checkbox" name = "box" [disabled]="DIH1" formControlName="DIH1" (change)="changeDI1()" [checked]="DIH1" /></td>
+        </tr>
+        <tr class="courseTable"> <!--Row 4 -->
+          <td> <div id="RightRow"><input class="course" name="DID2" formControlName="DID2" > <input class="course" name="DIC2"  formControlName="DIC2"></div>
+            <td > <input class="courseName" formControlName="DIN2" > </td>        
+            <td align="right" colspan="3" ><input class="grades" formControlName="DIG2"></td>
+            <td align="right"><input class="credits" formControlName="DIS2"></td><button (click)='toggle3("DID2","DIC2","DIN2", "DIG2", "DIS2", "DI","DIH2")'>edit</button>
+            <td align="right"><input type="checkbox" name = "box" [disabled]="DIH2" formControlName="DIH2" (change)="changeDI2()" [checked]="DIH2" /></td>
+        </tr>
+        <tr class="courseTable"> <!--Row 4 -->
+          <td> MAT 140 OR MAT 301<div ><input class="course" name="DID3" formControlName="DID3" > <input class="course" name="DIC3"  formControlName="DIC3"></div>
+          <td > <input class="courseName" formControlName="DIN3"> </td>        
+          <td align="right" colspan="3" ><input class="grades" formControlName="DIG3"></td>
+          <td align="right"><input class="credits" formControlName="DIS3"></td><button (click)='toggle2("DID3","DIC3","DIN3", "DIG3", "DIS3", "DI")'>edit</button>
+        </tr>
+        <tr class="courseTable"> <!--Row 4 -->
+          <td> NATURAL SCIENCE COURSE <div id="RightRow"><input class="course" name="COD3" formControlName="COD3" > <input class="course" name="COC3"  formControlName="COC3"></div>
+          <td > <input class="courseName" formControlName="CON3"> </td>        
+          <td align="right" colspan="3" ><input class="grades" formControlName="COG3"></td>
+          <td align="right"><input class="credits" formControlName="COS3"></td><button (click)='toggle2("COD3","COC3","CON3", "COG3", "COS3", "CO")'>edit</button>
+        </tr>
+        
+      </tbody>
+      </table>
+   <!--- <table align="center">
+      <thead>
+          <tr class="courseTable"> 
+            <th colspan="4" > CS Elective Courses 0-9 CREDITS OF ADDITIONAL 200 LEVEL CSC COURSES, NOT PREVIOUSLY USED FOR ABOVE REQUIREMENTS, EXCLUDING CSC 280 </th>
+          </tr>
+      </thead>
+      <tbody> 
+        <tr class="courseTable"> 
+          <td> <div id="RightRow"><input class="course" name="E2D1" formControlName="E2D1" value="MAT"> <input class="course" name="E2C1" value="260" formControlName="E2C1"></div>
+          <td > <input class="courseName" formControlName="E2N1" value = "LINEAR ALGEBRA"> </td>        
+          <td align="right" colspan="3" ><input class="grades" formControlName="E2G1"></td>
+          <td align="right"><input class="credits" formControlName="COS1"></td><button (click)='toggle3("E2D1","COC1","CON1", "COG1", "DIS1", "CO","DIH1")'>edit</button>
+          <td align="right"><input type="checkbox" name = "box" [disabled]="COH1" formControlName="COH1" (change)="changeH1()" [checked]="COH1" /></td>
+        </tr>
+        <tr class="courseTable"> 
+          <td> MAT ELECTIVE HIGHER THAN 181 NOT 224<div id="RightRow"><input class="course" name="COD2" formControlName="COD2" > <input class="course" name="COC2"  formControlName="COC2"></div>
+          <td > <input class="courseName" formControlName="E2N2"> </td>        
+          <td align="right" colspan="3" ><input class="grades" formControlName="E2G2"></td>
+          <td align="right"><input class="credits" formControlName="E2S2"></td><button (click)='toggle2("COD2","COC2","CON2", "COG2", "COS2", "CO")'>edit</button>
+        </tr>
+        <tr class="courseTable"> 
+          <td> NATURAL SCIENCE COURSE <div id="RightRow"><input class="course" name="COD3" formControlName="COD3" > <input class="course" name="COC3"  formControlName="COC3"></div>
+          <td > <input class="courseName" formControlName="CON3"> </td>        
+          <td align="right" colspan="3" ><input class="grades" formControlName="COG3"></td>
+          <td align="right"><input class="credits" formControlName="COS3"></td><button (click)='toggle2("COD3","COC3","CON3", "COG3", "COS3", "CO")'>edit</button>
+        </tr>
+        
+      </tbody>--->
