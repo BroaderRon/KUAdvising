@@ -64,6 +64,16 @@ li:hover a {
      margin-top: 70px;
  }
 
+ .tableTitle
+{
+  font-size: 2em;
+}
+
+.tableTitleDesc
+{
+  font-size: .8em;
+}
+
  /*--TABLE CSS--*/
  
 table

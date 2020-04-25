@@ -1,0 +1,27 @@
+.AlignTableLeft{
+    /*display: inline-block;*/
+    float: left;
+    width: 48%;
+}
+
+.AlignTableRight{
+    /*display: inline-block;*/
+    float: right;
+    width: 48%;
+    
+    margin-bottom: 25px;
+}
+
+.CSEC{
+    width: 48%;
+    height: 20%;
+    
+}
+
+#container {
+    display: block;
+    margin: 0 auto;
+    height: 500px;
+    width: 1400px; 
+    
+}

@@ -1,38 +1,31 @@
 <app-checksheet #genEd></app-checksheet>
+<div id="container">
 <form  [formGroup]="form">
-<table align="center">
+
+<!--CS Checksheet REQUIRED COURSES-->
+<table class="AlignTableLeft">
     <thead>
         <tr class="courseTable"> <!--Row 1 -->
-          <th colspan="4" > <span style="font-size: 2em">[C]</span> Understanding science & technology </th>
-          <td> Credits required:</td>
-          <td class="credits">9-12</td>
+          <th colspan="4" > <span class="tableTitle">Required Courses</span></th>
         </tr>
       </thead>
     <tbody>    
-      <tr class="courseTable"> <!--Row 2 -->
-        <td colspan="4"> These courses meet SLO (1) & (5) </td>
-        <td>Credits Earned</td>
-        <td align="right"><input class="credits"></td>
-      </tr>
       
       <tr class="courseTable"> <!--Row 3 -->
-        <td style="font-weight: bold"> Course Number </td>
-        <td style="font-weight: bold"> Course Name </td>
-        <td align="right" colspan="3">GR</td>
-        <td> CR</td>
-    </tr>
+        <td align="center" style="font-weight: bold"> Course </td>
+        <td align="center" colspan="3">Grade</td>
+        <td align="center"> Sem</td>
+      </tr>
         <tr  *ngFor="let data of RCourses; let i=index" class="courseTable"> <!--Row 4 -->
             <ng-container *ngIf="EnrolledCS.has(data.CourseNum); else elseBlock">
             
-            <td>{{i+1}}<div id="RightRow"><input class="course" [disabled]="enableStat[i]" value={{data.Dept}}> <input class="course" value={{data.CourseNum}} [disabled]="enableStat[i]"></div></td>
-            <td> <input class="courseName" [disabled]="enableStat[i]" value={{data.Name}}></td>      
+            <td><div id="RightRow"><input class="course" [disabled]="enableStat[i]" value={{data.Dept}}> <input class="course" value={{data.CourseNum}} [disabled]="enableStat[i]"><input class="courseName" [disabled]="enableStat[i]" value={{data.Name}}></div></td>   
             <td align="right" colspan="3"><input class="grades" #grade [disabled]="enableStat[i]" [value]=EnrolledCS.get(data.CourseNum).Grade></td>
             <td align="right"><input class="credits" #SEM [disabled]="enableStat[i]" [value]=EnrolledCS.get(data.CourseNum).Semester></td> <button (click)="toggle(i,data.Name,data.CourseNum,data.Dept,grade.value,SEM.value,box,'M')">edit</button>
             <td align="right"><input type="checkbox" [disabled]="enableStat[i]"  name ="box" (change)="onCheckboxChange($event,i)"  [checked]="checked[i]"/></td>
             </ng-container>
             <ng-template #elseBlock>
-            <td>{{i+1}}<div id="RightRow"><input class="course" [disabled]="enableStat[i]" value={{data.Dept}}> <input class="course" value={{data.CourseNum}} [disabled]="enableStat[i]"></div></td>
-            <td> <input class="courseName" value={{data.Name}} [disabled]="enableStat[i]" ></td>      
+            <td><div id="RightRow"><input class="course" [disabled]="enableStat[i]" value={{data.Dept}}> <input class="course" value={{data.CourseNum}} [disabled]="enableStat[i]"><input class="courseName" value={{data.Name}} [disabled]="enableStat[i]" ></div></td>     
             <td align="right" colspan="3"><input class="grades" #grade [disabled]="enableStat[i]" value=""></td>
             <td align="right"><input class="credits"  #SEM [disabled]="enableStat[i]" value=""></td> <button (click)="toggle(i,data.Name,data.CourseNum,data.Dept,grade.value,SEM.value,box,'M')">edit</button>
             <td align="right"><input type="checkbox" name = "box" [disabled]="enableStat[i]" [checked]="checked[i]" (change)="onCheckboxChange($event,i)" /></td>
@@ -43,10 +36,11 @@
   </table>
 
 <form [formGroup]= "sheet">
-  <table align="center">
+  <!--CONCOMITANT COURSES-->
+  <table class="AlignTableRight">
     <thead>
         <tr class="courseTable"> <!--Row 1 -->
-          <th colspan="4" > Concomitant Courses </th>
+          <th colspan="4" class="tableTitle"> Concomitant Courses </th>
         </tr>
     </thead>
     <tbody> 
@@ -72,10 +66,12 @@
       
     </tbody>
   </table>
-    <table align="center">
+
+  <!--DIRECTED GENERAL EDUCATION COURSES-->
+  <table class="AlignTableRight">
       <thead>
           <tr class="courseTable"> <!--Row 1 -->
-            <th colspan="4" > RECOMENDED GEN ED Courses </th>
+            <th colspan="4" ><span class="tableTitle"> Directed General Education </span><span class="tableTitleDesc"> THE FOLLOWING COURSES ARE REQUIRED TO FULFILL THE COMPUTER SCIENCE REQUIREMENTS AND ARE SUGGESTED TO SATISFY GENERAL EDUCATION. </span></th>
           </tr>
       </thead>
       <tbody> 
@@ -107,11 +103,13 @@
         </tr>
         
       </tbody>
-      </table>
-   <table align="center">
+  </table>
+
+      <!--CS ELECTIVE TABLE-->
+   <table class="AlignTableLeft">
       <thead>
           <tr class="courseTable"> 
-            <th colspan="4" > CS Elective Courses 0-9 CREDITS OF ADDITIONAL 200 LEVEL CSC COURSES, NOT PREVIOUSLY USED FOR ABOVE REQUIREMENTS, EXCLUDING CSC 280 </th>
+            <th colspan="4"> <span class="tableTitle"> CS Elective Courses</span> <span class="tableTitleDesc"> 0-9 CREDITS OF ADDITIONAL 200 LEVEL CSC COURSES, NOT PREVIOUSLY USED FOR ABOVE REQUIREMENTS, EXCLUDING CSC 280</span></th>
           </tr>
       </thead>
       <tbody> 
@@ -136,10 +134,12 @@
         
       </tbody>
    </table>
-      <table align="center">
+
+   <!--MORE CS ELECTIVE TABLE-->
+      <table class="AlignTableLeft">
         <thead>
             <tr class="courseTable"> 
-              <th colspan="4" > More CS Elective Courses 9-18 CREDITS OF ADDITIONAL CSC COURSES, NUMBER 300 OR ABOVE AND NOT PREVIOUSLY USED FOR ABOVE REQUIREMENTS, EXCLUDING ANY COURSE NUMBERED CSC 87X AND CSC 380. </th>
+              <th colspan="4" > <span class="tableTitle">More CS Elective Courses</span> <span class="tableTitleDesc"> 9-18 CREDITS OF ADDITIONAL CSC COURSES, NUMBER 300 OR ABOVE AND NOT PREVIOUSLY USED FOR ABOVE REQUIREMENTS, EXCLUDING ANY COURSE NUMBERED CSC 87X AND CSC 380.</span></th>
             </tr>
         </thead>
         <tbody> 
@@ -170,3 +170,7 @@
           
         </tbody>
         </table>
+    </form>
+  </form>
+</div>
+  
