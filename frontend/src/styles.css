@@ -95,14 +95,14 @@ input.course {
   text-align: center;
 }
 input.courseName {
-  width:98%;
-  padding:0;
-  margin:0;
+  width:45%;
+  float: right;
 }
 
 input.grades
 {
     width:40%;
+
 }
 
 input.credits
