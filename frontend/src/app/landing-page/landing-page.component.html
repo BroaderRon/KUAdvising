@@ -32,10 +32,10 @@
         </thead>
         <tbody>
             <tr>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
-                <td><input type="radio" id="Computer Science" name="major"[(ngModel)]="stuRadio" value="Computer Science"> <label for="Computer Science">Computer Science</label><br>
-                    <input type="radio" id="Information Technology" name="major"[(ngModel)]="stuRadio"value="Information Technology"><label for="Information Technology">Information Technology</label></td><button>submit</button>
+                <td><input type="text" #idnum></td>
+                <td><input type="text"#name></td>
+                <td><input type="radio" id="Computer Science" name="NS1"formControlName="NS1" value="Computer Science"> <label for="Computer Science">Computer Science</label><br>
+                    <input type="radio" id="Information Technology" name="NS1" formControlName="NS1" value="Information Technology"><label for="Information Technology">Information Technology</label></td><button (click)="newStu(idnum.value,name.value)">submit</button>
                 
             </tr>
          </tbody> 

@@ -176,7 +176,7 @@ def update_Course(KDept,KCourseNum):
 @app.route('/student', methods=['POST'])
 def createStudent():
   id = request.json['id']
-  name = request.json['Name']
+  name = request.json['name']
   Aemail = request.json['Aemail']
   major = request.json['major']
 

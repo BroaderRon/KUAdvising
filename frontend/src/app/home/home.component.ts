@@ -34,9 +34,7 @@ export class HomeComponent  implements AfterViewInit{
     this.data.changeMessage(id);
     //this.router.navigate(['./checksheet']);
   }
-  redirectland(){
-    ;
-  }
+
   login() {
     this.oktaAuth.loginRedirect('/');
   }

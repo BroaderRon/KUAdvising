@@ -6,6 +6,8 @@ import { AdivsorData } from './AdvisorData';
 import { StudentData } from './StudentData';
 import { StuArr } from '../home/StuArr';
 import { FormGroup, FormControl } from '@angular/forms';
+import { DataService } from '../cur-user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-landing-page',
@@ -23,7 +25,7 @@ export class LandingPageComponent implements OnInit {
   });
 
 
-  constructor(public oktaAuth: OktaAuthService,private _http: HttpService) {
+  constructor(public oktaAuth: OktaAuthService,private _http: HttpService,private data: DataService,private router: Router) {
     
   }
 
@@ -62,5 +64,34 @@ export class LandingPageComponent implements OnInit {
     this.showCreate= true;
 
   }
-}
+  openSheet(Stu:StudentData){
+    console.log(Stu)
+    console.log(this.userclaimC.email)
+    this.data.changeMessage(Stu);
+    if(Stu.major =="Computer Science"){
+      this.router.navigate(['./checksheet/CS']);
+    }
+    else{
+      this.router.navigate(['./checksheet/IT']);
+    }
+  }
+  newStu(id,name){
+    console.log(this.createStudent.get('NS1').value)
+    let tmp = new StudentData;
+    tmp.name = name;
+    tmp.id = id;
+    tmp.Aemail = this.userclaimC.email;
+    tmp.major = this.createStudent.get('NS1').value
+    this._http.postStudent(tmp).subscribe((ret: StudentData)=>{
+      console.log(ret)
+    })
+    this.data.changeMessage(tmp);
+    if(tmp.major =="Computer Science"){
+      this.router.navigate(['./checksheet/CS']);
+    }
+    else{
+      this.router.navigate(['./checksheet/IT']);
+    }
+  }
 
+}

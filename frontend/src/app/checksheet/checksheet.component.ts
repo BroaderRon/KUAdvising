@@ -4,6 +4,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { HttpService } from '../http.service';
 import {EnrollData,EnrollResData} from './enrollSubmit'
 import {CourseData} from './courseSubmit'
+import { StudentData } from '../landing-page/StudentData';
 
 
 @Component({
@@ -15,7 +16,7 @@ import {CourseData} from './courseSubmit'
 
 export class ChecksheetComponent implements OnInit {
   constructor(private data: DataService,private _http: HttpService) { }
-  message;
+  message: StudentData;
   Enrolled: Object;
   courseN: Object;
   eResData: EnrollResData;
@@ -97,9 +98,9 @@ export class ChecksheetComponent implements OnInit {
   
   ngOnInit() {
     //used to get selected student
-    this.data.currentMessage.subscribe(message => this.message = message);
+    this.data.currentMessage.subscribe(message => this.message =  message);
 
-    this._http.getEnrolled(this.message).subscribe((data) => {
+    this._http.getEnrolled(this.message.id).subscribe((data) => {
       this.Enrolled = data
       console.log(this.Enrolled);
       this.filledCourses = this.loadSheet()
@@ -136,7 +137,7 @@ export class ChecksheetComponent implements OnInit {
        A= A+1
        resolve()
        var newEntry = new EnrollData;
-       newEntry.sid = this.message
+       newEntry.sid = this.message.id
        newEntry.Dept = this.sheet.get(dept).value
        newEntry.CourseNum = this.sheet.get(course).value
        newEntry.Cat = this.sheet.get(course).value
@@ -167,7 +168,7 @@ export class ChecksheetComponent implements OnInit {
        B= B+1
        resolve()
        var newEntry = new EnrollData;
-       newEntry.sid = this.message
+       newEntry.sid = this.message.id
        newEntry.Dept = this.sheet.get(dept).value
        newEntry.CourseNum = this.sheet.get(course).value
        newEntry.Cat = this.sheet.get(course).value
@@ -197,7 +198,7 @@ export class ChecksheetComponent implements OnInit {
       C= C+1
       resolve()
       var newEntry = new EnrollData;
-      newEntry.sid = this.message
+      newEntry.sid = this.message.id
       newEntry.Dept = this.sheet.get(dept).value
       newEntry.CourseNum = this.sheet.get(course).value
       newEntry.Cat = this.sheet.get(course).value
@@ -227,7 +228,7 @@ export class ChecksheetComponent implements OnInit {
     D= D+1
     resolve()
     var newEntry = new EnrollData;
-    newEntry.sid = this.message
+    newEntry.sid = this.message.id
     newEntry.Dept = this.sheet.get(dept).value
     newEntry.CourseNum = this.sheet.get(course).value
     newEntry.Cat = this.sheet.get(course).value
@@ -252,7 +253,7 @@ export class ChecksheetComponent implements OnInit {
   }
   submitEnroll(D: string,C: string,N: string, G: string, S: string, Cat: string){
     var enrollSub = new EnrollData
-    enrollSub.sid = this.message
+    enrollSub.sid = this.message.id
     enrollSub.Dept = this.sheet.get(D).value
     enrollSub.CourseNum = this.sheet.get(C).value
     enrollSub.Cat = Cat
@@ -281,7 +282,7 @@ export class ChecksheetComponent implements OnInit {
   }
   putEnroll(D: string,C: string,N: string, G: string, S: string, Cat: string){
     var enrollSub = new EnrollData
-    enrollSub.sid = this.message
+    enrollSub.sid = this.message.id
     enrollSub.Dept = this.sheet.get(D).value
     enrollSub.CourseNum = this.sheet.get(C).value
     enrollSub.Cat = Cat

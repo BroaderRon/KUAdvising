@@ -41,4 +41,7 @@ export class HttpService {
   getStudentA(email: String) {
     return this.http.get(this.link + 'studentA/'+ email)
   }
+  postStudent(postS: StudentData){
+    return this.http.post(this.link+ 'student', postS)
+  }
 }

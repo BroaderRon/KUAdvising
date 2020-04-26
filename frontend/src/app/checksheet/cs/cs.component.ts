@@ -5,6 +5,7 @@ import { DataService } from 'src/app/cur-user.service';
 import { HttpService } from 'src/app/http.service';
 import { EnrollData, EnrollResData } from '../enrollSubmit';
 import { ThrowStmt } from '@angular/compiler';
+import { StudentData } from 'src/app/landing-page/StudentData';
 
 @Component({
   selector: 'app-cs',
@@ -32,7 +33,7 @@ export class CSComponent implements OnInit {
                                  {CourseNum: 354, Dept: 'CSC', Name: "Software Engineering 1"},
                                  {CourseNum: 355, Dept: 'CSC', Name: "Software Engineering 2"},]
     
-  message: any;
+  message: StudentData;
   isDisabled: boolean;
     constructor(private fb: FormBuilder,private data: DataService,private _http: HttpService) {
       this.form = this.fb.group({
@@ -127,7 +128,7 @@ export class CSComponent implements OnInit {
     this.data.currentMessage.subscribe(message => this.message = message);
     this.isDisabled=true;
     this.getEnroll()
-    this._http.getEnrolled(this.message).subscribe((data: EnrollData) => {
+    this._http.getEnrolled(this.message.id).subscribe((data: EnrollData) => {
       this.Enrolled = data
       console.log(this.Enrolled);
       this.filledCourses = this.loadSheet()
@@ -169,7 +170,7 @@ export class CSComponent implements OnInit {
   }
   getEnroll(){
     let temp = new Map<number, EnrollData>()
-    this._http.getEnrolled(this.message).subscribe((data: EnrollData ) => {
+    this._http.getEnrolled(this.message.id).subscribe((data: EnrollData ) => {
     for(let i in data){
       if(data[i].Dept == 'CSC'){
         temp.set(data[i].CourseNum,data[i])
@@ -219,7 +220,7 @@ export class CSComponent implements OnInit {
   submitEnroll(name,coursenum: number,dept,grade,semester,box,cat){
     console.log(semester)
       var enrollSub = new EnrollData
-      enrollSub.sid = this.message
+      enrollSub.sid = this.message.id
       enrollSub.Dept = dept
       enrollSub.CourseNum = coursenum
       enrollSub.Cat = cat
@@ -246,7 +247,7 @@ export class CSComponent implements OnInit {
   }
   putEnrollM(name,coursenum: number,dept,grade,semester,box,cat){
     var enrollSub = new EnrollData
-    enrollSub.sid = this.message
+    enrollSub.sid = this.message.id
     enrollSub.Dept = dept
     enrollSub.CourseNum = coursenum
     enrollSub.Cat = cat
@@ -301,7 +302,7 @@ export class CSComponent implements OnInit {
        
        resolve()
        var newEntry = new EnrollData;
-       newEntry.sid = this.message
+       newEntry.sid = this.message.id
        newEntry.Dept = this.sheet.get(dept).value
        newEntry.CourseNum = this.sheet.get(course).value
        newEntry.Cat = this.sheet.get(course).value
@@ -332,7 +333,7 @@ export class CSComponent implements OnInit {
          
          resolve()
          var newEntry = new EnrollData;
-         newEntry.sid = this.message
+         newEntry.sid = this.message.id
          newEntry.Dept = this.sheet.get(dept).value
          newEntry.CourseNum = this.sheet.get(course).value
          newEntry.Cat = this.sheet.get(course).value
@@ -362,7 +363,7 @@ export class CSComponent implements OnInit {
          
          resolve()
          var newEntry = new EnrollData;
-         newEntry.sid = this.message
+         newEntry.sid = this.message.id
          newEntry.Dept = this.sheet.get(dept).value
          newEntry.CourseNum = this.sheet.get(course).value
          newEntry.Cat = this.sheet.get(course).value
@@ -392,7 +393,7 @@ export class CSComponent implements OnInit {
         
         resolve()
         var newEntry = new EnrollData;
-        newEntry.sid = this.message
+        newEntry.sid = this.message.id
         newEntry.Dept = this.sheet.get(dept).value
         newEntry.CourseNum = this.sheet.get(course).value
         newEntry.Cat = this.sheet.get(course).value
@@ -419,7 +420,7 @@ export class CSComponent implements OnInit {
         
         resolve()
         var newEntry = new EnrollData;
-        newEntry.sid = this.message
+        newEntry.sid = this.message.id
         newEntry.Dept = this.sheet.get(dept).value
         newEntry.CourseNum = this.sheet.get(course).value
         newEntry.Cat = this.sheet.get(course).value
@@ -450,7 +451,7 @@ export class CSComponent implements OnInit {
          
          resolve()
          var newEntry = new EnrollData;
-         newEntry.sid = this.message
+         newEntry.sid = this.message.id
          newEntry.Dept = this.sheet.get(dept).value
          newEntry.CourseNum = this.sheet.get(course).value
          newEntry.Cat = this.sheet.get(course).value
@@ -482,7 +483,7 @@ export class CSComponent implements OnInit {
       A= A+1
       resolve()
       var newEntry = new EnrollData;
-      newEntry.sid = this.message
+      newEntry.sid = this.message.id
       newEntry.Dept = this.sheet.get(dept).value
       newEntry.CourseNum = this.sheet.get(course).value
       newEntry.Cat = this.sheet.get(course).value
@@ -510,7 +511,7 @@ export class CSComponent implements OnInit {
       B= B+1
       resolve()
       var newEntry = new EnrollData;
-      newEntry.sid = this.message
+      newEntry.sid = this.message.id
       newEntry.Dept = this.sheet.get(dept).value
       newEntry.CourseNum = this.sheet.get(course).value
       newEntry.Cat = this.sheet.get(course).value
@@ -588,7 +589,7 @@ export class CSComponent implements OnInit {
   }
   putEnrollS(D: string,C: string,N: string, G: string, S: string, Cat: string){
     var enrollSub = new EnrollData
-    enrollSub.sid = this.message
+    enrollSub.sid = this.message.id
     enrollSub.Dept = this.sheet.get(D).value
     enrollSub.CourseNum = this.sheet.get(C).value
     enrollSub.Cat = Cat
@@ -618,7 +619,7 @@ export class CSComponent implements OnInit {
   }
   submitEnrollS(D: string,C: string,N: string, G: string, S: string, Cat: string){
     var enrollSub = new EnrollData
-    enrollSub.sid = this.message
+    enrollSub.sid = this.message.id
     enrollSub.Dept = this.sheet.get(D).value
     enrollSub.CourseNum = this.sheet.get(C).value
     enrollSub.Cat = Cat
