@@ -60,7 +60,7 @@ export class CSComponent implements OnInit {
       //DIRECRTED
       DID1: new FormControl('PHI'),
       DIC1: new FormControl('40'),
-      DIN1: new FormControl('ETHICS'),
+      DIN1: new FormControl('INTRO TO ETHICS'),
       DIG1: new FormControl(''),
       DIH1: new FormControl(''),
       DIS1: new FormControl(''),

@@ -42,21 +42,21 @@ export class ITComponent implements OnInit {
   }
 
   RCourses: Array<CourseData> = [
-    { Name: 'CSC 125: DISCRETE MATH FOR CS I', CourseNum: 125, Dept: 'CSC' },
-    { Name: 'CSC 130: IT FUNDAMENTALS', CourseNum: 130, Dept: 'CSC' },
-    { Name: 'CSC 135: COMP SCI I', CourseNum: 135, Dept: 'CSC' },
-    { Name: 'CSC 136: COMP SCI II', CourseNum: 136, Dept: 'CSC' },
-    { Name: 'CSC 220: OO MULTIMEDIA PROG.', CourseNum: 220, Dept: 'CSC' },
-    { Name: 'CSC 223: ADVANCED SCIENTIFIC PROG. ', CourseNum: 223, Dept: 'CSC' },
-    { Name: 'CSC 242: WEB PROGRAMMING', CourseNum: 242, Dept: 'CSC' },
-    { Name: 'CSC 252: UNIX SCRIPTING AND ADMINISTRATION', CourseNum: 252, Dept: 'CSC' },
-    { Name: 'CSC 253: IT SYSTEMS', CourseNum: 253, Dept: 'CSC' },
-    { Name: 'CSC 273: COMPUTING SYSTEMS INTEGRATION', CourseNum: 273, Dept: 'CSC' },
-    { Name: 'CSC 311: COMPUTER NETWORKS', CourseNum: 311, Dept: 'CSC' },
-    { Name: 'CSC 341: INFORMATION SECURITY', CourseNum: 341, Dept: 'CSC' },
-    { Name: 'CSC 356: INTRODUCTION TO DATABASE SYS', CourseNum: 356, Dept: 'CSC' },
-    { Name: 'CSC 354: SOFTWARE ENGINEERING I', CourseNum: 354, Dept: 'CSC' },
-    { Name: 'CSC 355: SOFTWARE ENGINEERING II', CourseNum: 355, Dept: 'CSC' }
+    { Name: 'DISCRETE MATH FOR CS I', CourseNum: 125, Dept: 'CSC' },
+    { Name: 'IT FUNDAMENTALS', CourseNum: 130, Dept: 'CSC' },
+    { Name: 'COMP SCI I', CourseNum: 135, Dept: 'CSC' },
+    { Name: 'COMP SCI II', CourseNum: 136, Dept: 'CSC' },
+    { Name: 'OO MULTIMEDIA PROG.', CourseNum: 220, Dept: 'CSC' },
+    { Name: 'ADVANCED SCIENTIFIC PROG. ', CourseNum: 223, Dept: 'CSC' },
+    { Name: 'WEB PROGRAMMING', CourseNum: 242, Dept: 'CSC' },
+    { Name: 'UNIX SCRIPTING AND ADMINISTRATION', CourseNum: 252, Dept: 'CSC' },
+    { Name: 'IT SYSTEMS', CourseNum: 253, Dept: 'CSC' },
+    { Name: 'COMPUTING SYSTEMS INTEGRATION', CourseNum: 273, Dept: 'CSC' },
+    { Name: 'COMPUTER NETWORKS', CourseNum: 311, Dept: 'CSC' },
+    { Name: 'INFORMATION SECURITY', CourseNum: 341, Dept: 'CSC' },
+    { Name: 'INTRODUCTION TO DATABASE SYS', CourseNum: 356, Dept: 'CSC' },
+    { Name: 'SOFTWARE ENGINEERING I', CourseNum: 354, Dept: 'CSC' },
+    { Name: 'SOFTWARE ENGINEERING II', CourseNum: 355, Dept: 'CSC' }
     
   ];
 
