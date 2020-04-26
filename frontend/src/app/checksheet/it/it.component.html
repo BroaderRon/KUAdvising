@@ -19,20 +19,20 @@
     <tr *ngFor="let data of RCourses; let i=index" class="courseTable"> <!--Row 4 -->
       <ng-container *ngIf="EnrolledIT.has(data.CourseNum); else elseBlock">
       <td><input type="checkbox" [disabled]="enableStat[i]"  name ="box" (change)="onCheckboxChange($event,i)"  [checked]="checked[i]"/><div id="RightRow"><input class="course" [disabled]="enableStat[i]" value={{data.Dept}}> <input class="course" value={{data.CourseNum}} [disabled]="enableStat[i]"><input align= 'rght' class="courseName" [disabled]="enableStat[i]" value={{data.Name}}></div></td>     
-      <td align="right" colspan="3" ><input class="grades" #grade [disabled]="enableStat[i]" [value]=EnrolledIT.get(data.CourseNum).Grade></td>
-      <td align="right"><input class="credits" #SEM [disabled]="enableStat[i]" [value]=EnrolledIT.get(data.CourseNum).Semester></td><button (click)="toggle(i,data.Name,data.CourseNum,data.Dept,grade.value,SEM.value,box,'M')">edit</button>
+      <td align="center" colspan="3" ><input class="grades" #grade [disabled]="enableStat[i]" [value]=EnrolledIT.get(data.CourseNum).Grade></td>
+      <td align="center"><input class="credits" #SEM [disabled]="enableStat[i]" [value]=EnrolledIT.get(data.CourseNum).Semester></td><button (click)="toggle(i,data.Name,data.CourseNum,data.Dept,grade.value,SEM.value,box,'M')">edit</button>
        </ng-container>
        <ng-template #elseBlock>
       <td><input type="checkbox" [disabled]="enableStat[i]"  name ="box" (change)="onCheckboxChange($event,i)"  [checked]="checked[i]"/><div id="RightRow"><input class="course" [disabled]="enableStat[i]" value={{data.Dept}}> <input class="course" value={{data.CourseNum}} [disabled]="enableStat[i]"><input class="courseName" [disabled]="enableStat[i]" value={{data.Name}}></div></td>       
-      <td align="right" colspan="3" ><input class="grades" #grade [disabled]="enableStat[i]"></td>
-      <td align="right"><input class="credits" #SEM [disabled]="enableStat[i]"></td><button (click)="toggle(i,data.Name,data.CourseNum,data.Dept,grade.value,SEM.value,box,'M')">edit</button>
+      <td align="center" colspan="3" ><input class="grades" #grade [disabled]="enableStat[i]"></td>
+      <td align="center"><input class="credits" #SEM [disabled]="enableStat[i]"></td><button (click)="toggle(i,data.Name,data.CourseNum,data.Dept,grade.value,SEM.value,box,'M')">edit</button>
         </ng-template>
     </tr>
 
     <tr class="courseTable"> 
         <td>TOTAL CREDITS 39</td>   
         <td align="center"><input class="credits"></td>  
-        <td align="right" colspan="3"><input class="grades"></td>
+        <td align="center" colspan="3"><input class="grades"></td>
         <td></td><button >edit</button>
     </tr>
     
@@ -68,9 +68,7 @@
 <table class="AlignTableRight">
     <thead>
       <tr class="courseTable"> <!--Row 1 -->
-        <th colspan="4" > <span class="tableTitle">Directed General Education</span> <span class="tableTitleDesc"> THE FOLLOWING COURSES ARE
-            REQUIRED TO FULFILL THE INFORMATION TECHNOLOGY REQUIREMENTS AND ARE
-            SUGGESTED TO SATISFY GENERAL EDUCATION.</span></th>
+        <th colspan="4" > <span class="tableTitle">Directed General Education</span> <span class="tableTitleDesc"> THE FOLLOWING COURSES ARE REQUIRED TO FULFILL THE INFORMATION TECHNOLOGY REQUIREMENTS AND ARE SUGGESTED TO SATISFY GENERAL EDUCATION.</span></th>
       </tr>
     </thead>
     <tbody>    
@@ -78,7 +76,7 @@
       <tr class="courseTable"> <!--Row 3 -->
         <td style="font-weight: bold"> Course </td>
         <td style="font-weight: bold"> G. E. </td>
-        <td align="center" colspan="3">Grade</td>
+        <td align="center" colspan="3" style="font-weight: bold">Grade</td>
         <td align="center"> Sem</td>
       </tr>
       
