@@ -1,2 +1,45 @@
 <p>landing-page works!</p>
 <p>'Welcome back, {{ userName }}'</p>
+
+<ng-container *ngIf="Stus">
+    <table>
+      <thead>
+        <tr class="courseTable"> <!--Row 1 -->
+          <td> Student ID Number</td>
+          <td> Student Name</td>
+          <td> Student Major</td>
+        </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let Stu of Stus">
+    <td><input type="text" disabled value={{Stu.id}}></td>
+    <td><input type="text" disabled value={{Stu.name}}></td>
+    <td><input type="text" disabled value={{Stu.major}}></td><button (click)=openSheet(Stu)>Select</button>
+    </tr>
+    </tbody>
+</table>
+<ng-container>
+<form [formGroup]="createStudent">
+    <button (click)="toggleC()" [disabled]="ToggleCreateB">Create Student</button>
+    <ng-container *ngIf="showCreate">
+    <table >
+        <thead>
+            <tr class="courseTable"> <!--Row 1 -->
+              <td> Student ID Number</td>
+              <td> Student Name</td>
+              <td> Student Major</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="radio" id="Computer Science" name="major"[(ngModel)]="stuRadio" value="Computer Science"> <label for="Computer Science">Computer Science</label><br>
+                    <input type="radio" id="Information Technology" name="major"[(ngModel)]="stuRadio"value="Information Technology"><label for="Information Technology">Information Technology</label></td><button>submit</button>
+                
+            </tr>
+         </tbody> 
+    </table>
+</ng-container>
+</form>
+

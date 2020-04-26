@@ -1,9 +1,2 @@
-<ul *ngIf="Stus">
-    <li *ngFor="let Stu of Stus">
-      <p >{{ Stu.name }}</p>
-      <p >{{ Stu.id }}</p>
-      <button (click)="redirect(Stu.id)">select</button>
-    </li>
-</ul>
 
 <router-outlet></router-outlet>

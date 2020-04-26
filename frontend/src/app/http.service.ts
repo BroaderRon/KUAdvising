@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {EnrollData,EnrollResData} from './checksheet/enrollSubmit'
 import {CourseData} from './checksheet/courseSubmit'
+import { AdivsorData } from './landing-page/AdvisorData';
+import { StudentData } from './landing-page/StudentData';
+import { StuArr } from './home/StuArr';
 
 @Injectable({
   providedIn: 'root'
@@ -28,5 +31,14 @@ export class HttpService {
   putEnroll(putE: EnrollData, oldE: EnrollData){
     
     return this.http.put(this.link+ 'enroll/' + oldE.sid + '/' + oldE.Dept+ '/' + oldE.CourseNum, putE)
+  }
+  getAdvisor(email: String) {
+    return this.http.get(this.link + 'advisor/'+ email)
+  }
+  postAdvisor(postA: AdivsorData){
+    return this.http.post(this.link+ 'advisor', postA)
+  }
+  getStudentA(email: String) {
+    return this.http.get(this.link + 'studentA/'+ email)
   }
 }

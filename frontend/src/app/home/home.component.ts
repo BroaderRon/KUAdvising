@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { HttpService } from '../http.service';
 import { Router } from '@angular/router';
 import { DataService } from "../cur-user.service";
@@ -9,9 +9,9 @@ import { OktaAuthService } from '@okta/okta-angular';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent  implements AfterViewInit{
   isAuthenticated: boolean;
-  Stus: Object;
+  Stus: any;
 
   constructor(private _http: HttpService,private router: Router,private data: DataService, public oktaAuth: OktaAuthService) {
     this.oktaAuth.$authenticationState.subscribe(
@@ -22,29 +22,20 @@ export class HomeComponent implements OnInit {
 
   message;
 
-  async ngOnInit() {
+ 
+  async ngAfterViewInit() {
     this.isAuthenticated = await this.oktaAuth.isAuthenticated();
-    this._http.getStudent().subscribe((data) => {
-      this.Stus = data
-      console.log(this.Stus);
-      if(this.isAuthenticated){
-        this.redirectland
-      }
+    console.log(this.isAuthenticated)
+    if(this.isAuthenticated){
+      this.router.navigate(['./landing'])
     }
-  );
-  this.data.currentMessage.subscribe(message =>{
-
-   this.message = message
-    console.log(this.message)
-  });
-    
   }
   redirect(id: any){
     this.data.changeMessage(id);
     //this.router.navigate(['./checksheet']);
   }
   redirectland(){
-    this.router.navigate(['./landing']);
+    ;
   }
   login() {
     this.oktaAuth.loginRedirect('/');

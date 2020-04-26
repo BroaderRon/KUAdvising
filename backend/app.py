@@ -26,19 +26,22 @@ ma = Marshmallow(app)
 class Student(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   name = db.Column(db.String(100))
-  aid = db.Column(db.Integer())
+  Aemail = db.Column(db.String(100))
+  major = db.Column(db.String(100))
 
-  def __init__(self,name,aid):
+  def __init__(self,id,name,Aemail,major):
+    self.id = id
     self.name = name
-    self.aid = aid
+    self.Aemail = Aemail
+    self.major = major
 
 class Advisor(db.Model):
-  id = db.Column(db.Integer, primary_key=True)
   Name = db.Column(db.String(100))
+  Email = db.Column(db.String(100), primary_key=True)
 
-  def __init__(self,Name):
-    self.name = Name
-
+  def __init__(self,Name,Email):
+    self.Name = Name
+    self.Email = Email
 class Log(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   date = db.Column(db.String(100))
@@ -84,11 +87,11 @@ class CourseSchema(ma.Schema):
 
 class AdvisorSchema(ma.Schema):
   class Meta:
-    fields = ('id','Name')
+    fields = ('Name','Email')
 
 class StudentSchema(ma.Schema):
   class Meta:
-    fields = ('id','name','aid')
+    fields = ('id','name','Aemail','major')
 
 class LogSchema(ma.Schema):
   class Meta:
@@ -167,15 +170,17 @@ def update_Course(KDept,KCourseNum):
 
   ################################################
             #####  START STUDENTS ########
-      ##### SCHEMA = ('id','name','aid')######
+      ##### SCHEMA = ('id','name','Aemail')######
 
 #create a new student
 @app.route('/student', methods=['POST'])
 def createStudent():
+  id = request.json['id']
   name = request.json['Name']
-  aid = request.json['aid']
+  Aemail = request.json['Aemail']
+  major = request.json['major']
 
-  newStudent = Student(name,aid)
+  newStudent = Student(id,name,Aemail,major)
 
   db.session.add(newStudent)
   db.session.commit()
@@ -194,16 +199,24 @@ def getstudents():
 def getstudent(id):
   student = Student.query.get(id)
   return student_schema.jsonify(student)
+  
+#get all students belonging to a advisor
+@app.route('/studentA/<Aemail>', methods=['GET'])
+def getstudentA(Aemail):
+  courses = Student.query.filter(Student.Aemail == Aemail)
+  return students_schema.jsonify(courses)
 
 ##update a student
 @app.route('/student/<id>', methods=['PUT'])
 def update_Student(id):
   stu = Student.query.get(id)
   name = request.json['Name']
-  aid = request.json['aid']
+  Aemail = request.json['Aemail']
+  major = request.json['major']
 
   stu.name = name
-  stu.aid = aid
+  stu.Aemail = Aemail
+  stu.major = major
 
   db.session.commit()
   return student_schema.jsonify(stu)
@@ -309,6 +322,37 @@ def update_Enroll(sid,KDept,KCourseNum):
     return jsonify(retT)
   retF= {"RESULT":"FALSE"}
   return jsonify(retF)
+
+@app.route('/advisor/<Email>', methods=['GET'])
+def get_Advisor(Email):
+    exists = db.session.query(db.exists().where(Advisor.Email == Email)).scalar()
+    print(exists)
+    if exists:
+      advisor = Advisor.query.get(Email)
+      ret = {"RESULT" : "TRUE"}
+      return jsonify(ret)
+    else:
+      ret = {"RESULT" : "FALSE"}
+      return jsonify(ret)
+
+@app.route('/advisor', methods=['POST'])
+def createAdvisor():
+  Name = request.json['Name']
+  Email = request.json['Email']
+
+  newAdvisor = Advisor(Name,Email)
+
+  db.session.add(newAdvisor)
+  db.session.commit()
+
+  return student_schema.jsonify(newAdvisor)
+
+@app.route('/advisor', methods=['GET'])
+def getAdvisors():
+  alladvisors = Advisor.query.all()
+  result = advisors_schema.dump(alladvisors)
+  return jsonify(result)
+    
   
 if __name__ == '__main__':
     app.run(debug=True)
