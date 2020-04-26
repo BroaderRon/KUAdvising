@@ -19,6 +19,8 @@ export class ITComponent implements OnInit {
   enableStat: Array<boolean>;
   checked: Array<boolean>;
   COH1: boolean;
+  DIH1: boolean;
+  DIH2: boolean;
   constructor(private _http: HttpService, private data: DataService, private fb: FormBuilder) { 
     this.form = this.fb.group({
     checkArray: this.fb.array([])})
@@ -32,7 +34,7 @@ export class ITComponent implements OnInit {
     this._http.getEnrolled(this.message).subscribe((data: EnrollData) => {
       this.Enrolled = data
       console.log(this.Enrolled);
-      //this.filledCourses = this.loadSheet()
+      this.filledCourses = this.loadSheet()
     });
     console.log(this.Enrolled)
    var tmp = new Array<boolean>();
@@ -40,6 +42,7 @@ export class ITComponent implements OnInit {
      tmp.push(true);
    }
    this.enableStat = tmp;
+   this.sheet.disable()
   }
 
   sheet = new FormGroup({
@@ -49,6 +52,19 @@ export class ITComponent implements OnInit {
     COG1: new FormControl(''),
     COS1: new FormControl(''),
     COH1: new FormControl(''),
+    //DI
+    DID1: new FormControl('PHI'),
+    DIC1: new FormControl('40'),
+    DIN1: new FormControl('INTRO TO ETHICS'),
+    DIG1: new FormControl(''),
+    DIH1: new FormControl(''),
+    DIS1: new FormControl(''),
+    DID2: new FormControl('MAT'),
+    DIC2: new FormControl('140'),
+    DIN2: new FormControl('Applied Statistics'),
+    DIG2: new FormControl(''),
+    DIS2: new FormControl(''),
+    DIH2: new FormControl(''),
   });
   RCourses: Array<CourseData> = [
     { Name: 'DISCRETE MATH FOR CS I', CourseNum: 125, Dept: 'CSC' },
@@ -219,7 +235,7 @@ export class ITComponent implements OnInit {
     console.log("in load")
     for ( let enroll in this.Enrolled){
       console.log("enrolled:" + this.Enrolled[enroll].Dept)
-     if(this.Enrolled[enroll].Dept == "MAT" && this.Enrolled[enroll].CourseNum == 260  ){
+     if(this.Enrolled[enroll].Dept == "MAT" && this.Enrolled[enroll].CourseNum >=105 && this.Enrolled[enroll].Cat == 'CO'  ){
        console.log
       this.COH1= true;
       new Promise(resolve => {
@@ -228,6 +244,38 @@ export class ITComponent implements OnInit {
         var name = 'CON1'
         var grade = "COG1"
         var sem = "COS1"
+        this.sheet.controls[dept].setValue(this.Enrolled[enroll].Dept)
+        this.sheet.controls[course].setValue(this.Enrolled[enroll].CourseNum)
+        this.sheet.controls[grade].setValue(this.Enrolled[enroll].Grade)
+        this.sheet.controls[sem].setValue(this.Enrolled[enroll].Semester)
+       this._http.getCourse(this.Enrolled[enroll].Dept,this.Enrolled[enroll].CourseNum).subscribe((data)=>{
+         let courseN=data
+         console.log(JSON.parse(JSON.stringify(courseN)).Name)
+         console.log()
+       });
+       
+       resolve()
+       var newEntry = new EnrollData;
+       newEntry.sid = this.message
+       newEntry.Dept = this.sheet.get(dept).value
+       newEntry.CourseNum = this.sheet.get(course).value
+       newEntry.Cat = this.sheet.get(course).value
+       newEntry.Grade = this.sheet.get(grade).value
+       newEntry.Semester = this.sheet.get(sem).value
+       tempM.set(dept,newEntry)
+      }); 
+       
+     }
+     console.log("enrolled:" + this.Enrolled[enroll].Dept)
+     if(this.Enrolled[enroll].Dept == "PHI" && this.Enrolled[enroll].CourseNum == 40 ){
+       console.log
+      this.COH1= true;
+      new Promise(resolve => {
+        var dept = 'DID1'
+        var course = 'DIC1'
+        var name = 'DIN1'
+        var grade = "DIG1"
+        var sem = "DIS1"
        this.sheet.controls[grade].setValue(this.Enrolled[enroll].Grade)
        this.sheet.controls[sem].setValue(this.Enrolled[enroll].Semester)
        this._http.getCourse(this.Enrolled[enroll].Dept,this.Enrolled[enroll].CourseNum).subscribe((data)=>{
@@ -248,8 +296,166 @@ export class ITComponent implements OnInit {
       }); 
        
      }
-     
+     console.log("enrolled:" + this.Enrolled[enroll].Dept)
+     if(this.Enrolled[enroll].Dept == "MAT" && this.Enrolled[enroll].CourseNum == 260  ){
+       console.log
+      this.COH1= true;
+      new Promise(resolve => {
+        var dept = 'DID2'
+        var course = 'DIC2'
+        var name = 'DIN2'
+        var grade = "DIG2"
+        var sem = "DIS2"
+       this.sheet.controls[grade].setValue(this.Enrolled[enroll].Grade)
+       this.sheet.controls[sem].setValue(this.Enrolled[enroll].Semester)
+       this._http.getCourse(this.Enrolled[enroll].Dept,this.Enrolled[enroll].CourseNum).subscribe((data)=>{
+         let courseN=data
+         console.log(JSON.parse(JSON.stringify(courseN)).Name)
+         console.log()
+       });
+       
+       resolve()
+       var newEntry = new EnrollData;
+       newEntry.sid = this.message
+       newEntry.Dept = this.sheet.get(dept).value
+       newEntry.CourseNum = this.sheet.get(course).value
+       newEntry.Cat = this.sheet.get(course).value
+       newEntry.Grade = this.sheet.get(grade).value
+       newEntry.Semester = this.sheet.get(sem).value
+       tempM.set(dept,newEntry)
+      }); 
+       
+     }
     }
+
     return tempM;
+  }
+  toggle3(D: string,C: string,N: string, G: string, S: string, Cat: string, H: string){
+    if(this.sheet.get(G).disabled){
+      this.sheet.get(G).enable()
+      this.sheet.get(S).enable()
+      this.sheet.get(H).enable()
+    }
+    else{
+      this.sheet.get(G).disable()
+      this.sheet.get(S).disable()
+      this.sheet.get(H).disable()
+      this.processData2(D,C,N,G,S,Cat,H)
+
+    }
+  }
+
+  toggle2(D: string,C: string,N: string, G: string, S: string, Cat: string){
+    if(this.sheet.get(G).disabled){
+      this.sheet.get(D).enable()
+      this.sheet.get(C).enable()
+      this.sheet.get(N).enable()
+      this.sheet.get(G).enable()
+      this.sheet.get(S).enable()
+    }
+    else{
+      this.sheet.get(D).disable()
+      this.sheet.get(C).disable()
+      this.sheet.get(N).disable()
+      this.sheet.get(G).disable()
+      this.sheet.get(S).disable()
+      this.processData(D,C,N,G,S,Cat)
+
+    }
+  }
+  processData(D: string,C: string,N: string, G: string, S: string, Cat: string){
+    console.log(this.filledCourses)
+    console.log("fill in procc "+this.filledCourses.get(D))
+    console.log(this.filledCourses.has(D))
+    if(this.filledCourses.has(D)){
+      this.putEnrollS(D,C,N,G,S,Cat)
+    }
+    else{
+      this.submitEnrollS(D,C,N,G,S,Cat)
+    }
+  }
+  processData2(D: string,C: string,N: string, G: string, S: string, Cat: string, H){
+    console.log("fill in procc "+this.filledCourses.get(D))
+    console.log(this.filledCourses.has(D))
+    if(this.filledCourses.has(D)){
+      this.putEnrollS(D,C,N,G,S,Cat)
+    }
+    else if (H="COH1"){
+      if(this.COH1 = true){
+      this.submitEnrollS(D,C,N,G,S,Cat)
+      }
+    }
+  }
+  putEnrollS(D: string,C: string,N: string, G: string, S: string, Cat: string){
+    var enrollSub = new EnrollData
+    enrollSub.sid = this.message
+    enrollSub.Dept = this.sheet.get(D).value
+    enrollSub.CourseNum = this.sheet.get(C).value
+    enrollSub.Cat = Cat
+    enrollSub.Grade = this.sheet.get(G).value
+    enrollSub.Semester = this.sheet.get(S).value
+    var oldData = new EnrollData;
+    oldData = this.filledCourses.get(D)
+    console.log(oldData)
+    this._http.putEnroll(enrollSub,oldData).subscribe((res: EnrollResData)=> {
+      let eResData = res;
+      console.log(eResData.RESULT)
+      if(eResData.RESULT == 'FALSE'){
+        var courseSub = new CourseData;
+        courseSub.CourseNum = this.sheet.get(C).value
+        courseSub.Dept = this.sheet.get(D).value
+        courseSub.Name = this.sheet.get(N).value;
+        this._http.postCourse(courseSub).subscribe((res: CourseData) =>{
+          let cResData = res;
+          console.log(cResData)
+          this._http.putEnroll(enrollSub,oldData).subscribe((res2: EnrollResData)=>{
+           eResData = res2;
+           console.log(eResData.RESULT)
+          });
+         });
+      }
+    });
+  }
+  submitEnrollS(D: string,C: string,N: string, G: string, S: string, Cat: string){
+    var enrollSub = new EnrollData
+    enrollSub.sid = this.message
+    enrollSub.Dept = this.sheet.get(D).value
+    enrollSub.CourseNum = this.sheet.get(C).value
+    enrollSub.Cat = Cat
+    enrollSub.Grade = this.sheet.get(G).value
+    enrollSub.Semester = this.sheet.get(S).value
+    this._http.postEnroll(enrollSub).subscribe((res: EnrollResData)=> {
+      let eResData = res;
+      console.log(eResData)
+      this.filledCourses.set(D,enrollSub)
+      console.log(eResData.RESULT)
+      if(eResData.RESULT == 'FALSE'){
+        var courseSub = new CourseData;
+        courseSub.CourseNum = this.sheet.get(C).value
+        courseSub.Dept = this.sheet.get(D).value
+        courseSub.Name = this.sheet.get(N).value;
+        this._http.postCourse(courseSub).subscribe((res: CourseData) =>{
+          this.submitEnrollS(D,C,N,G,S,Cat)
+        })
+        
+      }
+      
+    });
+  }
+  changeDI1(){
+    if(this.DIH1){
+      this.DIH1 = false
+    }
+    else{
+      this.DIH1 = true;
+    }
+  }
+  changeDI2(){
+    if(this.DIH2){
+      this.DIH2 = false
+    }
+    else{
+      this.DIH2 = true;
+    }
   }
 }
