@@ -18,6 +18,7 @@ export class ITComponent implements OnInit {
   filledCourses: Map<any,any>;
   enableStat: Array<boolean>;
   checked: Array<boolean>;
+  COH1: boolean;
   constructor(private _http: HttpService, private data: DataService, private fb: FormBuilder) { 
     this.form = this.fb.group({
     checkArray: this.fb.array([])})
@@ -41,6 +42,14 @@ export class ITComponent implements OnInit {
    this.enableStat = tmp;
   }
 
+  sheet = new FormGroup({
+    COD1: new FormControl(''),
+    COC1: new FormControl(''),
+    CON1: new FormControl(''),
+    COG1: new FormControl(''),
+    COS1: new FormControl(''),
+    COH1: new FormControl(''),
+  });
   RCourses: Array<CourseData> = [
     { Name: 'CSC 125: DISCRETE MATH FOR CS I', CourseNum: 125, Dept: 'CSC' },
     { Name: 'CSC 130: IT FUNDAMENTALS', CourseNum: 130, Dept: 'CSC' },
@@ -202,5 +211,45 @@ export class ITComponent implements OnInit {
       this.submitEnroll(name,coursenum,dept,grade,semester,box,cat)
       }
     }
+  }
+  loadSheet(){
+    var A = 1
+    var B = 1
+    var tempM = new Map()
+    console.log("in load")
+    for ( let enroll in this.Enrolled){
+      console.log("enrolled:" + this.Enrolled[enroll].Dept)
+     if(this.Enrolled[enroll].Dept == "MAT" && this.Enrolled[enroll].CourseNum == 260  ){
+       console.log
+      this.COH1= true;
+      new Promise(resolve => {
+        var dept = 'COD1'
+        var course = 'COC1'
+        var name = 'CON1'
+        var grade = "COG1"
+        var sem = "COS1"
+       this.sheet.controls[grade].setValue(this.Enrolled[enroll].Grade)
+       this.sheet.controls[sem].setValue(this.Enrolled[enroll].Semester)
+       this._http.getCourse(this.Enrolled[enroll].Dept,this.Enrolled[enroll].CourseNum).subscribe((data)=>{
+         let courseN=data
+         console.log(JSON.parse(JSON.stringify(courseN)).Name)
+         console.log()
+       });
+       
+       resolve()
+       var newEntry = new EnrollData;
+       newEntry.sid = this.message
+       newEntry.Dept = this.sheet.get(dept).value
+       newEntry.CourseNum = this.sheet.get(course).value
+       newEntry.Cat = this.sheet.get(course).value
+       newEntry.Grade = this.sheet.get(grade).value
+       newEntry.Semester = this.sheet.get(sem).value
+       tempM.set(dept,newEntry)
+      }); 
+       
+     }
+     
+    }
+    return tempM;
   }
 }
