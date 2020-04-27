@@ -1,13 +1,9 @@
 <header>
   <div class='Banner'>
     <h1>KU Advisement System</h1>
-    <a routerLink="/">TESTING</a>
     <nav>
       <ul>
         <li><a href="#" routerLink="/">Home</a></li>
-        <li><a href="#" routerLink="/checksheet">Checksheet</a></li>
-        <li><a href="#" routerLink="/checksheet/CS">CS</a></li>
-        <li><a href="#" routerLink="/checksheet/log">IT</a></li>
         <button *ngIf="!isAuthenticated" (click)="login()"> Login </button>
         <button *ngIf="isAuthenticated" (click)="logout()"> logout </button>
       </ul>

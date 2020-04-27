@@ -16,6 +16,8 @@
 .CSEC{
     width: 48%;
     height: 20%;
+    margin-right: 20px;
+    float: left;;
     
 }
 
@@ -25,4 +27,8 @@
     height: 500px;
     width: 1400px; 
     
+}
+#csr{
+    margin-right: 60px;
+    float: right;
 }

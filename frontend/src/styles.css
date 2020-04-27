@@ -3,6 +3,15 @@
     --ku-gold: #f4d020;
     --ku-red: #701931;
 }
+body {
+  background-color:#cfcfcf
+}
+input{
+  background-color:#f1efef
+}
+textarea{
+  background-color:#f1efef
+}
 
 /*--ID--*/
 #RightRow

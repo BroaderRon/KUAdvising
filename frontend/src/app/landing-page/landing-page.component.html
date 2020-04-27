@@ -1,7 +1,8 @@
-<p>landing-page works!</p>
-<p>'Welcome back, {{ userName }}'</p>
+<div class="center-container" >
+    <div class="Center" >
+<form [formGroup]="createStudent">
+<button (click)="toggleC()" [disabled]="ToggleCreateB">Create Student</button>
 
-<ng-container *ngIf="Stus">
     <table>
       <thead>
         <tr class="courseTable"> <!--Row 1 -->
@@ -11,6 +12,15 @@
         </tr>
     </thead>
     <tbody>
+        <ng-container *ngIf="showCreate">
+        <tr>
+            <td><input type="text" #idnum></td>
+            <td><input type="text"#name></td>
+            <td><input type="radio" id="Computer Science" name="NS1"formControlName="NS1" value="Computer Science"> <label for="Computer Science">Computer Science</label><br>
+            <input type="radio" id="Information Technology" name="NS1" formControlName="NS1" value="Information Technology"><label for="Information Technology">Information Technology</label></td><button (click)="newStu(idnum.value,name.value)">submit</button>
+            
+        </tr>
+    </ng-container>
     <tr *ngFor="let Stu of Stus">
     <td><input type="text" disabled value={{Stu.id}}></td>
     <td><input type="text" disabled value={{Stu.name}}></td>
@@ -18,28 +28,6 @@
     </tr>
     </tbody>
 </table>
-<ng-container>
-<form [formGroup]="createStudent">
-    <button (click)="toggleC()" [disabled]="ToggleCreateB">Create Student</button>
-    <ng-container *ngIf="showCreate">
-    <table >
-        <thead>
-            <tr class="courseTable"> <!--Row 1 -->
-              <td> Student ID Number</td>
-              <td> Student Name</td>
-              <td> Student Major</td>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><input type="text" #idnum></td>
-                <td><input type="text"#name></td>
-                <td><input type="radio" id="Computer Science" name="NS1"formControlName="NS1" value="Computer Science"> <label for="Computer Science">Computer Science</label><br>
-                    <input type="radio" id="Information Technology" name="NS1" formControlName="NS1" value="Information Technology"><label for="Information Technology">Information Technology</label></td><button (click)="newStu(idnum.value,name.value)">submit</button>
-                
-            </tr>
-         </tbody> 
-    </table>
-</ng-container>
 </form>
-
+</div>
+</div>
