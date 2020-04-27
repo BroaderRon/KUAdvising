@@ -50,14 +50,14 @@
         
         <tr class="courseTable"> <!--Row 2 -->
           <td align="center" style="font-weight: bold"> Course </td>
-          <td align="center" style="font-weight: bold"> CR </td>
+          <td align="center" style="font-weight: bold"> Name </td>
           <td align="center" colspan="3">Grade</td>
           <td align="center"> Sem</td>
         </tr>
 
         <tr class="courseTable"> <!--Row 4 -->
-          <td>MAT 105 COLLEGE ALGEBRA(or higher) <div id="RightRow"><input class="course" name="COD1" formControlName="COD1" > <input class="course" name="COC1" formControlName="COC1"></div>
-            <td > <input class="courseName" formControlName="CON1" > </td>        
+          <td>MAT 105:(or higher) <div ><input placeholder = "Department" class="course" name="COD1" formControlName="COD1" > <input class="course" name="COC1" formControlName="COC1"></div>
+            <td align="center" > <input class="courseName" formControlName="CON1" > </td>        
             <td align="right" colspan="3" ><input class="grades" formControlName="COG1"></td>
             <td align="right"><input class="credits" formControlName="COS1"></td><button (click)='toggle2("COD1","COC1","CON1", "COG1", "COS1", "CO")'>edit</button>
         </tr>
@@ -106,9 +106,7 @@
 <table class="AlignTableRight">
   <thead>
     <tr class="courseTable"> <!--Row 1 -->
-      <th colspan="4" > <span style="font-size: 2em">Directed General Education</span> THE FOLLOWING COURSES ARE
-          REQUIRED TO FULFILL THE INFORMATION TECHNOLOGY REQUIREMENTS AND ARE
-          SUGGESTED TO SATISFY GENERAL EDUCATION.</th>
+      <th colspan="4" > <span style="font-size: 2em">Free Electives </span> ANY COURSE CARRYING UNIVERSITY CREDIT</th>
     </tr>
   </thead>
       <tbody> 
@@ -163,7 +161,7 @@
 <table class="CSEC">
   <thead>
       <tr class="courseTable"> 
-        <th colspan="4" > <span class="tableTitle">More CS Elective Courses</span> <span class="tableTitleDesc"> 9-18 CREDITS OF ADDITIONAL CSC COURSES, NUMBER 300 OR ABOVE AND NOT PREVIOUSLY USED FOR ABOVE REQUIREMENTS, EXCLUDING ANY COURSE NUMBERED CSC 87X AND CSC 380.</span></th>
+        <th colspan="4" > <span class="tableTitle">CS Elective Courses</span> <span class="tableTitleDesc">8 CREDITS OF ADDITIONAL CSC COURSES, NUMBER200 OR ABOVE AND NOT PREVIOUSLY  USED FOR ABOVE REQUIREMENTS. CSC 280 AND CSC 380 CANNOT BE USED HERE</span></th>
       </tr>
   </thead>
   <tbody> 
