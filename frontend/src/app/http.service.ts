@@ -5,6 +5,7 @@ import {CourseData} from './checksheet/courseSubmit'
 import { AdivsorData } from './landing-page/AdvisorData';
 import { StudentData } from './landing-page/StudentData';
 import { StuArr } from './home/StuArr';
+import { LogData } from './checksheet/log/LogData';
 
 @Injectable({
   providedIn: 'root'
@@ -43,5 +44,11 @@ export class HttpService {
   }
   postStudent(postS: StudentData){
     return this.http.post(this.link+ 'student', postS)
+  }
+  getLog(sid: number) {
+    return this.http.get(this.link + 'log/'+ sid)
+  }
+  postLog(log: LogData){
+    return this.http.post(this.link+ 'log', log)
   }
 }

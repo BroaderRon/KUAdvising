@@ -46,7 +46,7 @@ class Log(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   date = db.Column(db.String(100))
   sid = db.Column(db.Integer)
-  info = db.Column(db.String(500))
+  info = db.Column(db.String(10000))
 
   def __init__(self,date,sid,info):
     self.date = date

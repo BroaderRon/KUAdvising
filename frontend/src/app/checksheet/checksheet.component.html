@@ -1,5 +1,4 @@
-<p (onload)= "clickeven()">{{ message }}</p>
-<button (click)="clickeven()">select</button>
+
 <div id="container">
 
 <body>
@@ -37,20 +36,6 @@
           <td align="right"><input class="grades"></td>
           <td align="right"><input class="credits"></td>
         </tr>
-        
-        <tr class="courseTable"> <!--Row 5 -->
-          <td colspan="6"> Transfer students transffering 30 credits or more, and also not transfering an FYS or FYE course;
-                            may select any approved genral educaiton course too meet their FYS requirement.</td>
-        </tr>
-        
-        <tr class="courseTable"> <!--Row 6 -->
-          <td > Transfer elective: </td>
-          <td></td>
-          <td></td>     
-          <td></td>     
-        <td align="right"><input class="grades"></td>
-          <td align="right"><input class="credits"></td>
-        </tr>
       </tbody>
     </table>
     
@@ -65,7 +50,7 @@
       </thead>
       <tbody>    
         <tr class="courseTable"> <!--Row 2 -->
-          <td colspan="4"> These courses meet SLO (1) & (5) </td>
+          <td colspan="4"> <a href="https://www.kutztown.edu/academics/general-education/2018-general-education-courses/category-a-courses.html" target="_blank">Link to A courses</a> </td>
           <td>Credits Earned</td>
           <td align="right"><input class="credits"></td>
         </tr>
@@ -78,29 +63,28 @@
         </tr>
         
         <tr class="courseTable"> <!--Row 4 -->
-          <td>1: composition 100 <div id="RightRow"><input class="course" name="AD1" formControlName="AD1"> <input class="course" name="AC1" formControlName="AC1"></div>
+          <td>1: <div id="RightRow"><input class="course" name="AD1" formControlName="AD1"> <input class="course" name="AC1" formControlName="AC1"></div>
           <td > <input class="courseName" formControlName="AN1"> </td>        
           <td align="right" colspan="3" ><input class="grades" formControlName="AG1"></td>
           <td align="right"><input class="credits" formControlName="AS1"></td><button (click)='toggle("AD1","AC1","AN1", "AG1", "AS1", "A")'>edit</button>
         </tr>
         
         <tr class="courseTable"> <!--Row 5 -->
-          <td>2: composition 200 <div id="RightRow"><input class="course" name="AD2" formControlName="AD2"> <input class="course" name="AC2" formControlName="AC2"></div></td>
+          <td> <div id="RightRow"><input class="course" name="AD2" formControlName="AD2"> <input class="course" name="AC2" formControlName="AC2"></div></td>
           <td > <input class="courseName" formControlName="AN2"> </td>        
           <td align="right" colspan="3"><input class="grades" formControlName="AG2"></td>
           <td align="right"><input class="credits" formControlName="AS2"></td><button (click)='toggle("AD2","AC2","AN2", "AG2", "AS2","A")'>edit</button>
         </tr>
         
         <tr class="courseTable"> <!--Row 5 -->
-          <td>3: Speaking<div id="RightRow"><input class="course" name="AD3" formControlName="AD3"> <input class="course" name="AC3" formControlName="AC3"></div></td>      
+          <td><div id="RightRow"><input class="course" name="AD3" formControlName="AD3"> <input class="course" name="AC3" formControlName="AC3"></div></td>      
           <td> <input class="courseName" formControlName="AN3"> </td>
           <td align="right" colspan="3"><input class="grades" formControlName="AG3"></td>
           <td align="right"><input class="credits" formControlName="AS3"></td><button (click)='toggle("AD3","AC3","AN3", "AG3", "AS3","A")'>edit</button>
         </tr>
         
         <tr class="courseTable"> <!--Row 5 -->
-          <td>4: Any writing(A2) or speaking course(A3)
-              or from the approved list <input class="course" name="AD4" formControlName="AD4"> <input class="course" name="AC4" formControlName="AC4"></td>   
+          <td> <input class="course" name="AD4" formControlName="AD4"> <input class="course" name="AC4" formControlName="AC4"></td>   
           <td > <input class="courseName" formControlName="AN4"></td>
           <td align="right" colspan="3"><input class="grades" formControlName="AG4"></td>
           <td align="right"><input class="credits" formControlName="AS4"></td><button (click)='toggle("AD4","AC4","AN4", "AG4", "AS4","A")'>edit</button>

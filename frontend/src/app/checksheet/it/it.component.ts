@@ -66,6 +66,68 @@ export class ITComponent implements OnInit {
     DIG2: new FormControl(''),
     DIS2: new FormControl(''),
     DIH2: new FormControl(''),
+    //E1
+    E3D1: new FormControl(''),
+    E3C1: new FormControl(''),
+    E3N1: new FormControl(''),
+    E3G1: new FormControl(''),
+    E3S1: new FormControl(''),
+    E3D2: new FormControl(''),
+    E3C2: new FormControl(''),
+    E3N2: new FormControl(''),
+    E3G2: new FormControl(''),
+    E3S2: new FormControl(''),
+    E3D3: new FormControl(''),
+    E3C3: new FormControl(''),
+    E3N3: new FormControl(''),
+    E3G3: new FormControl(''),
+    E3S3: new FormControl(''),
+    E3D4: new FormControl(''),
+    E3C4: new FormControl(''),
+    E3N4: new FormControl(''),
+    E3G4: new FormControl(''),
+    E3S4: new FormControl(''),
+    E3D5: new FormControl(''),
+    E3C5: new FormControl(''),
+    E3N5: new FormControl(''),
+    E3G5: new FormControl(''),
+    E3S5: new FormControl(''),
+    E3D6: new FormControl(''),
+    E3C6: new FormControl(''),
+    E3N6: new FormControl(''),
+    E3G6: new FormControl(''),
+    E3S6: new FormControl(''),
+    //E2
+    E2D1: new FormControl(''),
+    E2C1: new FormControl(''),
+    E2N1: new FormControl(''),
+    E2G1: new FormControl(''),
+    E2S1: new FormControl(''),
+    E2D2: new FormControl(''),
+    E2C2: new FormControl(''),
+    E2N2: new FormControl(''),
+    E2G2: new FormControl(''),
+    E2S2: new FormControl(''),
+    E2D3: new FormControl(''),
+    E2C3: new FormControl(''),
+    E2N3: new FormControl(''),
+    E2G3: new FormControl(''),
+    E2S3: new FormControl(''),
+    E2D4: new FormControl(''),
+    E2C4: new FormControl(''),
+    E2N4: new FormControl(''),
+    E2G4: new FormControl(''),
+    E2S4: new FormControl(''),
+    E2D5: new FormControl(''),
+    E2C5: new FormControl(''),
+    E2N5: new FormControl(''),
+    E2G5: new FormControl(''),
+    E2S5: new FormControl(''),
+    E2D6: new FormControl(''),
+    E2C6: new FormControl(''),
+    E2N6: new FormControl(''),
+    E2G6: new FormControl(''),
+    E2S6: new FormControl(''),
   });
   RCourses: Array<CourseData> = [
     { Name: 'DISCRETE MATH FOR CS I', CourseNum: 125, Dept: 'CSC' },
@@ -327,10 +389,69 @@ export class ITComponent implements OnInit {
       }); 
        
      }
-    }
+     if(this.Enrolled[enroll].Cat == "E2"){
+
+      new Promise(resolve => {
+       var dept = 'E2D'+A
+       var course = 'E2C' +A
+       var name = 'E2N' + A
+       var grade = "E2G" + A
+       var sem = "E2S"+A
+      this.sheet.controls[dept].setValue(this.Enrolled[enroll].Dept)
+      this.sheet.controls[course].setValue(this.Enrolled[enroll].CourseNum)
+      this.sheet.controls[grade].setValue(this.Enrolled[enroll].Grade)
+      this.sheet.controls[sem].setValue(this.Enrolled[enroll].Semester)
+      this._http.getCourse(this.Enrolled[enroll].Dept,this.Enrolled[enroll].CourseNum).subscribe((data: CourseData)=>{
+        this.sheet.controls[name].setValue(data.Name)
+        console.log()
+      });
+      A= A+1
+      resolve()
+      console.log(this.message.id)
+      var newEntry = new EnrollData;
+      newEntry.sid = this.message.id
+      newEntry.Dept = this.sheet.get(dept).value
+      newEntry.CourseNum = this.sheet.get(course).value
+      newEntry.Cat = this.sheet.get(course).value
+      newEntry.Grade = this.sheet.get(grade).value
+      newEntry.Semester = this.sheet.get(sem).value
+      tempM.set(dept,newEntry)
+     }); 
+   }
+   else if(this.Enrolled[enroll].Cat == "E3"){
+
+      new Promise(resolve => {
+       var dept = 'E3D'+B
+       var course = 'E3C' +B
+       var name = 'E3N' + B
+       var grade = "E3G" + B
+       var sem = "E3S"+B
+      this.sheet.controls[dept].setValue(this.Enrolled[enroll].Dept)
+      this.sheet.controls[course].setValue(this.Enrolled[enroll].CourseNum)
+      this.sheet.controls[grade].setValue(this.Enrolled[enroll].Grade)
+      this.sheet.controls[sem].setValue(this.Enrolled[enroll].Semester)
+      this._http.getCourse(this.Enrolled[enroll].Dept,this.Enrolled[enroll].CourseNum).subscribe((data: CourseData)=>{
+        this.sheet.controls[name].setValue(data.Name)
+        console.log()
+      });
+      B= B+1
+      resolve()
+      var newEntry = new EnrollData;
+      newEntry.sid = this.message.id
+      newEntry.Dept = this.sheet.get(dept).value
+      newEntry.CourseNum = this.sheet.get(course).value
+      newEntry.Cat = this.sheet.get(course).value
+      newEntry.Grade = this.sheet.get(grade).value
+      newEntry.Semester = this.sheet.get(sem).value
+      tempM.set(dept,newEntry)
+     });
+   }
+  }
+  
 
     return tempM;
   }
+ 
   toggle3(D: string,C: string,N: string, G: string, S: string, Cat: string, H: string){
     if(this.sheet.get(G).disabled){
       this.sheet.get(G).enable()
@@ -347,6 +468,7 @@ export class ITComponent implements OnInit {
   }
 
   toggle2(D: string,C: string,N: string, G: string, S: string, Cat: string){
+    console.log(N)
     if(this.sheet.get(G).disabled){
       this.sheet.get(D).enable()
       this.sheet.get(C).enable()

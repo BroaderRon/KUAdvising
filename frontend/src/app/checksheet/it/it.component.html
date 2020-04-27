@@ -102,125 +102,118 @@
   </table>
 
   <!--FREE ELECTIVE TABLE-->
+<!--DIRECTED GENERAL EDUCATION COURSES-->
 <table class="AlignTableRight">
-    <thead>
-      <tr class="courseTable"> <!--Row 0 -->
-        <th colspan="4" > <span style="font-size: 2em">Free Electives</span> ANY COURSE CARRYING UNIVERSITY CREDIT</th>
+  <thead>
+    <tr class="courseTable"> <!--Row 1 -->
+      <th colspan="4" > <span style="font-size: 2em">Directed General Education</span> THE FOLLOWING COURSES ARE
+          REQUIRED TO FULFILL THE INFORMATION TECHNOLOGY REQUIREMENTS AND ARE
+          SUGGESTED TO SATISFY GENERAL EDUCATION.</th>
+    </tr>
+  </thead>
+      <tbody> 
+        <tr class="courseTable"> <!--Row 3 -->
+          <td align="center" style="font-weight: bold"> Course </td>
+          <td align="center" colspan="3">Grade</td>
+          <td align="center"> Sem</td>
+        </tr>
+        <tr class="courseTable"> 
+          <td>1. <div id="RightRow"><input class="course" name="E2D1" formControlName="E2D1" placeholder="Department"> <input class="course" name="E2C1"  formControlName="E2C1" placeholder="Number"><input class="courseName" formControlName="E2N1" placeholder="Course Name"> </div> </td>       
+          <td align="center" colspan="3" ><input class="grades" formControlName="E2G1"></td>
+          <td align="center"><input class="credits" formControlName="E2S1" ></td><button (click)='toggle2("E2D1","E2C1","E2N1", "E2G1", "E2S1", "E2")'>edit</button>
+        </tr>
+        <tr class="courseTable"> 
+          <td>2. <div id="RightRow"><input class="course" name="E2D2" formControlName="E2D2" placeholder="Department"> <input class="course" name="E2C2"  formControlName="E2C2" placeholder="Number"><input class="courseName" formControlName="E2N2" placeholder="Course Name"></div> </td>       
+            <td align="center" colspan="3" ><input class="grades" formControlName="E2G2"></td>
+            <td align="center"><input class="credits" formControlName="E2S2"></td><button (click)='toggle2("E2D2","E2C2","E2N2", "E2G2", "E2S2", "E2")'>edit</button>
+        </tr>
+        <tr class="courseTable"> 
+          <td>3. <div id="RightRow"><input class="course" name="E2D3" formControlName="E2D3" placeholder="Department"> <input class="course" name="E2C3"  formControlName="E2C3" placeholder="Number"><input class="courseName" formControlName="E2N3" placeholder="Course Name"></div></td>        
+            <td align="center" colspan="3" ><input class="grades" formControlName="E2G3"></td>
+            <td align="center"><input class="credits" formControlName="E2S3"></td><button (click)='toggle2("E2D3","E2C3","E2N3", "E2G3", "E2S3", "E2")'>edit</button>
+        </tr>
+        <tr class="courseTable"> 
+          <td>4. <div id="RightRow"><input class="course" name="E2D4" formControlName="E2D4" placeholder="Department"> <input class="course" name="E2C4"  formControlName="E2C4" placeholder="Number"><input class="courseName" formControlName="E2N4" placeholder="Course Name"></div></td>        
+            <td align="center" colspan="3" ><input class="grades" formControlName="E2G4"></td>
+            <td align="center"><input class="credits" formControlName="E3S4"></td><button (click)='toggle2("E2D4","E2C4","E2N4", "E2G4", "E2S4", "E2")'>edit</button>
+        </tr>
+        <tr class="courseTable"> 
+          <td>5. <div id="RightRow"><input class="course" name="E2D5" formControlName="E2D5" placeholder="Department"> <input class="course" name="E2C5"  formControlName="E2C5" placeholder="Number"><input class="courseName" formControlName="E2N5" placeholder="Course Name"></div> </td>     
+            <td align="center" colspan="3" ><input class="grades" formControlName="E2G5"></td>
+            <td align="center"><input class="credits" formControlName="E2S5"></td><button (click)='toggle2("E2D5","E2C5","E2N5", "E2G5", "E2S5", "E2")'>edit</button>
+        </tr>
+        <tr class="courseTable"> 
+          <td>4. <div id="RightRow"><input class="course" name="E2D6" formControlName="E2D6" placeholder="Department"> <input class="course" name="E2C6"  formControlName="E2C6" placeholder="Number"><input class="courseName" formControlName="E2N6" placeholder="Course Name"></div> </td>  
+            <td align="center" colspan="3" ><input class="grades" formControlName="E2G6"></td>
+            <td align="center"><input class="credits" formControlName="E2S6"></td><button (click)='toggle2("E2D6","E2C6","E2N6", "E2G6", "E2S6", "E2")'>edit</button>
+        </tr>
+        <tr class="courseTable"> <!--Row 8 -->
+          <td>TOTAL CREDITS 9-18</td>    
+          <td align="center"><input class="credits"></td>  
+          <td align="center" colspan="3"><input class="grades"></td>
+          <button >edit</button>
+        </tr>
+  
+        
+      </tbody>
+      </table>
+    
+    
+<!--CS ELECTIVE TABLE-->
+<table class="CSEC">
+  <thead>
+      <tr class="courseTable"> 
+        <th colspan="4" > <span class="tableTitle">More CS Elective Courses</span> <span class="tableTitleDesc"> 9-18 CREDITS OF ADDITIONAL CSC COURSES, NUMBER 300 OR ABOVE AND NOT PREVIOUSLY USED FOR ABOVE REQUIREMENTS, EXCLUDING ANY COURSE NUMBERED CSC 87X AND CSC 380.</span></th>
       </tr>
-    </thead>
-    <tbody>    
-      
-      <tr class="courseTable"> <!--Row 1 -->
-        <td align="center" style="font-weight: bold"> Course </td>
-        <td align="center" style="font-weight: bold" align="center"> CR</td>
-        <td align="center" colspan="3">Grade</td>
-        <td align="center">Sem</td>
-      </tr>
-      
-      <tr class="courseTable"> <!--Row 2 -->
-        <td>1: <div id="RightRow"><input class="course" name="DD1"> <input class="course" name="DC1"></div></td>
-        <td> <input class="courseName"></td>     
-        <td align="center"><input class="credits" ></td>        
-        <td align="right" colspan="3"><input class="grades"></td><button >edit</button>
-      </tr>
-      
-      <tr class="courseTable"> <!--Row 3 -->
-        <td>2: <div id="RightRow"><input class="course" name="DD2"> <input class="course" name="DC2"></div></td>
-        <td> <input class="courseName"></td> 
-        <td align="center"><input class="credits" ></td>            
-        <td align="right" colspan="3"><input class="grades"></td><button >edit</button>
-      </tr>
-      
-      <tr class="courseTable"> <!--Row 4 -->
-        <td>3: <div id="RightRow"><input class="course" name="DD3"> <input class="course" name="DC3"></div></td>
-        <td> <input class="courseName"></td>    
-        <td align="center"><input class="credits" ></td>  
-        <td align="right" colspan="3"><input class="grades"></td><button >edit</button>
-      </tr>
+  </thead>
+  <tbody> 
+    <tr class="courseTable"> <!--Row 3 -->
+      <td align="center" style="font-weight: bold"> Course </td>
+      <td align="center" colspan="3">Grade</td>
+      <td align="center"> Sem</td>
+    </tr>
+    <tr class="courseTable"> 
+      <td>1. <div id="RightRow"><input class="course" name="E3D1" formControlName="E3D1" placeholder="Department"> <input class="course" name="E3C1"  formControlName="E3C1" placeholder="Number"><input class="courseName" formControlName="E3N1" placeholder="Course Name"> </div> </td>       
+      <td align="center" colspan="3" ><input class="grades" formControlName="E3G1"></td>
+      <td align="center"><input class="credits" formControlName="E3S1" ></td><button (click)='toggle2("E3D1","E3C1","E3N1", "E3G1", "E3S1", "E3")'>edit</button>
+    </tr>
+    <tr class="courseTable"> 
+      <td>2. <div id="RightRow"><input class="course" name="E3D2" formControlName="E3D2" placeholder="Department"> <input class="course" name="E3C2"  formControlName="E3C2" placeholder="Number"><input class="courseName" formControlName="E3N2" placeholder="Course Name"></div> </td>       
+        <td align="center" colspan="3" ><input class="grades" formControlName="E3G2"></td>
+        <td align="center"><input class="credits" formControlName="E3S2"></td><button (click)='toggle2("E3D2","E3C2","E3N2", "E3G2", "E3S2", "E3")'>edit</button>
+    </tr>
+    <tr class="courseTable"> 
+      <td>3. <div id="RightRow"><input class="course" name="E3D3" formControlName="E3D3" placeholder="Department"> <input class="course" name="E3C3"  formControlName="E3C3" placeholder="Number"><input class="courseName" formControlName="E3N3" placeholder="Course Name"></div></td>        
+        <td align="center" colspan="3" ><input class="grades" formControlName="E3G3"></td>
+        <td align="center"><input class="credits" formControlName="E3S3"></td><button (click)='toggle2("E3D3","E3C3","E3N3", "E3G3", "E3S3", "E3")'>edit</button>
+    </tr>
+    <tr class="courseTable"> 
+      <td>4. <div id="RightRow"><input class="course" name="E3D4" formControlName="E3D4" placeholder="Department"> <input class="course" name="E3C4"  formControlName="E3C4" placeholder="Number"><input class="courseName" formControlName="E3N4" placeholder="Course Name"></div></td>        
+        <td align="center" colspan="3" ><input class="grades" formControlName="E3G4"></td>
+        <td align="center"><input class="credits" formControlName="E3S4"></td><button (click)='toggle2("E3D4","E3C4","E3N4", "E3G4", "E3S4", "E3")'>edit</button>
+    </tr>
+    <tr class="courseTable"> 
+      <td>5. <div id="RightRow"><input class="course" name="E3D5" formControlName="E3D5" placeholder="Department"> <input class="course" name="E3C5"  formControlName="E3C5" placeholder="Number"><input class="courseName" formControlName="E3N5" placeholder="Course Name"></div> </td>     
+        <td align="center" colspan="3" ><input class="grades" formControlName="E3G5"></td>
+        <td align="center"><input class="credits" formControlName="E3S5"></td><button (click)='toggle2("E3D5","E3C5","E3N5", "E3G5", "E3S5", "E3")'>edit</button>
+    </tr>
+    <tr class="courseTable"> 
+      <td>4. <div id="RightRow"><input class="course" name="E3D6" formControlName="E3D6" placeholder="Department"> <input class="course" name="E3C6"  formControlName="E3C6" placeholder="Number"><input class="courseName" formControlName="E3N6" placeholder="Course Name"></div> </td>  
+        <td align="center" colspan="3" ><input class="grades" formControlName="E3G6"></td>
+        <td align="center"><input class="credits" formControlName="E3S6"></td><button (click)='toggle2("E3D6","E3C6","E3N6", "E3G6", "E3S6", "E3")'>edit</button>
+    </tr>
+    <tr class="courseTable"> <!--Row 8 -->
+      <td>TOTAL CREDITS 9-18</td>    
+      <td align="center"><input class="credits"></td>  
+      <td align="center" colspan="3"><input class="grades"></td>
+      <button >edit</button>
+    </tr>
 
-      <tr class="courseTable"> <!--Row 5 -->
-        <td>4: <div id="RightRow"><input class="course" name="DD3"> <input class="course" name="DC3"></div></td>
-        <td> <input class="courseName"></td>    
-        <td align="center"><input class="credits" ></td>  
-        <td align="right" colspan="3"><input class="grades"></td><button >edit</button>
-      </tr>
-
-      <tr class="courseTable"> <!--Row 6 -->
-        <td>5: <div id="RightRow"><input class="course" name="DD3"> <input class="course" name="DC3"></div></td>
-        <td> <input class="courseName"></td>    
-        <td align="center"><input class="credits" ></td>  
-        <td align="right" colspan="3"><input class="grades"></td><button >edit</button>
-      </tr>
-
-      <tr class="courseTable"> <!--Row 7 -->
-        <td>6: <div id="RightRow"><input class="course" name="DD3"> <input class="course" name="DC3"></div></td>
-        <td> <input class="courseName"></td>    
-        <td align="center"><input class="credits" ></td>  
-        <td align="right" colspan="3"><input class="grades"></td><button >edit</button>
-      </tr>
-
-      <tr class="courseTable"> <!--Row 8 -->
-        <td>TOTAL CREDITS 15-18</td> 
-      </tr>
-
-    </tbody>
+    
+  </tbody>
   </table>
 
-  <!--CS ELECTIVE TABLE-->
-  <table class="CSEC">
-    <thead>
-        <tr class="courseTable"> 
-          <th colspan="4" > <span class="tableTitle">More CS Elective Courses</span> <span class="tableTitleDesc"> 9-18 CREDITS OF ADDITIONAL CSC COURSES, NUMBER 300 OR ABOVE AND NOT PREVIOUSLY USED FOR ABOVE REQUIREMENTS, EXCLUDING ANY COURSE NUMBERED CSC 87X AND CSC 380.</span></th>
-        </tr>
-    </thead>
-    <tbody> 
-      <tr class="courseTable"> <!--Row 3 -->
-        <td align="center" style="font-weight: bold"> Course </td>
-        <td align="center" colspan="3">Grade</td>
-        <td align="center"> Sem</td>
-      </tr>
-      <tr class="courseTable"> 
-        <td>1. <div id="RightRow"><input class="course" name="E3D1" formControlName="E3D1" placeholder="Department"> <input class="course" name="E3C1"  formControlName="E3C1" placeholder="Number"><input class="courseName" formControlName="E3N1" placeholder="Course Number"> </div> </td>       
-        <td align="center" colspan="3" ><input class="grades" formControlName="E3G1"></td>
-        <td align="center"><input class="credits" formControlName="E3S1"></td><button (click)='toggle2("E3D1","E3C1","E3N1", "E3G1", "E3S1", "E3")'>edit</button>
-      </tr>
-      <tr class="courseTable"> 
-        <td>2. <div id="RightRow"><input class="course" name="E3D2" formControlName="E3D2" placeholder="Department"> <input class="course" name="E3C2"  formControlName="E3C2" placeholder="Number"><input class="courseName" formControlName="E3N2" placeholder="Course Number"></div> </td>       
-          <td align="center" colspan="3" ><input class="grades" formControlName="E3G2"></td>
-          <td align="center"><input class="credits" formControlName="E3S2"></td><button (click)='toggle2("E3D2","E3C2","E3N2", "E3G2", "E3S2", "E3")'>edit</button>
-      </tr>
-      <tr class="courseTable"> 
-        <td>3. <div id="RightRow"><input class="course" name="E3D3" formControlName="E3D3" placeholder="Department"> <input class="course" name="E3C3"  formControlName="E3C3" placeholder="Number"><input class="courseName" formControlName="E3N3" placeholder="Course Number"></div></td>        
-          <td align="center" colspan="3" ><input class="grades" formControlName="E3G3"></td>
-          <td align="center"><input class="credits" formControlName="E3S3"></td><button (click)='toggle2("E3D3","E3C3","E3N3", "E3G3", "E3S3", "E3")'>edit</button>
-      </tr>
-      <tr class="courseTable"> 
-        <td>4. <div id="RightRow"><input class="course" name="E3D4" formControlName="E3D4" placeholder="Department"> <input class="course" name="E3C4"  formControlName="E3C4" placeholder="Number"><input class="courseName" formControlName="E3N4" placeholder="Course Number"></div></td>        
-          <td align="center" colspan="3" ><input class="grades" formControlName="E3G4"></td>
-          <td align="center"><input class="credits" formControlName="E3S4"></td><button (click)='toggle2("E3D4","E3C4","E3N4", "E3G4", "E3S4", "E3")'>edit</button>
-      </tr>
-      <tr class="courseTable"> 
-        <td>5. <div id="RightRow"><input class="course" name="E3D5" formControlName="E3D5" placeholder="Department"> <input class="course" name="E3C5"  formControlName="E3C5" placeholder="Number"><input class="courseName" formControlName="E3N5" placeholder="Course Number"></div> </td>     
-          <td align="center" colspan="3" ><input class="grades" formControlName="E3G5"></td>
-          <td align="center"><input class="credits" formControlName="E3S5"></td><button (click)='toggle2("E3D5","E3C5","E3N5", "E3G5", "E3S5", "E3")'>edit</button>
-      </tr>
-      <tr class="courseTable"> 
-        <td>4. <div id="RightRow"><input class="course" name="E3D4" formControlName="E3D4" placeholder="Department"> <input class="course" name="E3C4"  formControlName="E3C4" placeholder="Number"><input class="courseName" formControlName="E3N4" placeholder="Course Number"></div> </td>  
-          <td align="center" colspan="3" ><input class="grades" formControlName="E3G4"></td>
-          <td align="center"><input class="credits" formControlName="E3S4"></td><button (click)='toggle2("E3D4","E3C4","E3N4", "E3G4", "E3S4", "E3")'>edit</button>
-      </tr>
-      <tr class="courseTable"> <!--Row 8 -->
-        <td>TOTAL CREDITS 9-18</td>    
-        <td align="center"><input class="credits"></td>  
-        <td align="center" colspan="3"><input class="grades"></td>
-        <button >edit</button>
-      </tr>
 
-      
-    </tbody>
-    </table>
-  
-
- </form>
-
+</form>
+<app-log ></app-log>
 </div>
