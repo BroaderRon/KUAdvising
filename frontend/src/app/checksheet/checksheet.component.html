@@ -33,8 +33,8 @@
           <td> First Year Seminar </td>
           <td></td>
           <td></td>          
-          <td align="right"><input class="grades"></td>
-          <td align="right"><input class="credits"></td>
+          <td align="right" colspan="3" ><input class="grades" formControlName="FG1"></td>
+          <td align="right"><input class="credits" formControlName="FS1"></td><button (click)='toggle2( "AG1", "AS1", "F")'>edit</button>
         </tr>
       </tbody>
     </table>
@@ -175,14 +175,14 @@
         </tr>
         
         <tr class="courseTable"> <!--Row 5 -->
-          <td>2: Quantitative Reasoning  <div id="RightRow"><input class="course" name="CD2" formControlName="CD2"> <input class="course" name="CC2" formControlName="CC2"></div></td>
+          <td>2: <div id="RightRow"><input class="course" name="CD2" formControlName="CD2"> <input class="course" name="CC2" formControlName="CC2"></div></td>
           <td> <input class="courseName" formControlName="CN2"></td>            
           <td align="right" colspan="3"><input class="grades" formControlName="CG2"></td>
           <td align="right"><input class="credits" formControlName="CS2"></td><button (click)='toggle("CD2","CC2","CN2", "CG2", "CS2","C")'>edit</button>
         </tr>
         
         <tr class="courseTable"> <!--Row 6 -->
-          <td>3: Any course approved for C1 or C2 <div id="RightRow"><input class="course" name="CD3" formControlName="CD3"> <input class="course" name="CC3" formControlName="DC3"></div></td>
+          <td>3: <div id="RightRow"><input class="course" name="CD3" formControlName="CD3"> <input class="course" name="CC3" formControlName="DC3"></div></td>
           <td> <input class="courseName" formControlName="CN3"></td>            
           <td align="right" colspan="3"><input class="grades" formControlName="CG3"></td>
           <td align="right"><input class="credits" formControlName="CS3"></td><button (click)='toggle("CD3","CC3","CN3", "CG3", "CS3","C")'>edit</button>
