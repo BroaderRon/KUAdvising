@@ -3,7 +3,7 @@ Author: KUAdvising Team
 Filename: app.py
 Purpose: provide a backend for our program all of the routes for our api will be stored here
 '''
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify,render_template
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow 
 import os
@@ -45,7 +45,7 @@ class Advisor(db.Model):
 
   def __init__(self,Name,Email):
     self.Name = Name
-    self.Email = Email
+    self.ngEmail = Email
 class Log(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   date = db.Column(db.String(100))
@@ -356,7 +356,10 @@ def getAdvisors():
   alladvisors = Advisor.query.all()
   result = advisors_schema.dump(alladvisors)
   return jsonify(result)
-    
+
+@app.route('/')
+def home():
+  return render_template('index.html') 
   
 if __name__ == '__main__':
-    app.run(debug=True,host='0.0.0.0')
+    app.run(debug=True, ssl_context='adhoc')
