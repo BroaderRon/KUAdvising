@@ -14,13 +14,17 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 basedir = os.path.abspath(os.path.dirname(__file__))
+
 # Database
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'db.sqlite')
+app.config['SQLALCHEMY_DATABASE_URI'] ='mysql+pymysql://kuadvsys:kuadvsys@ku-adv.cb4sk1ynfbfv.us-east-2.rds.amazonaws.com:3307/kuadv'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['WTF_CSRF_ENABLED'] = True
+app.config['SECRET_KEY'] = 'H44mvA+HW3lBXcYOasfMa58Nx53dkSxi458UgbKS'
 # Init db
 db = SQLAlchemy(app)
 # Init ma
 ma = Marshmallow(app)
+
 
 #TABLES
 class Student(db.Model):
@@ -355,4 +359,4 @@ def getAdvisors():
     
   
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True,host='0.0.0.0')
