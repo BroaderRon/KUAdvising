@@ -259,10 +259,12 @@ export class ChecksheetComponent implements OnInit {
     enrollSub.Cat = Cat
     enrollSub.Grade = this.sheet.get(G).value
     enrollSub.Semester = this.sheet.get(S).value
+
     this._http.postEnroll(enrollSub).subscribe((res: EnrollResData)=> {
       this.eResData = res;
       this.filledCourses.set(D,enrollSub)
       console.log(this.eResData.RESULT)
+
       if(this.eResData.RESULT == 'FALSE'){
         let courseSub = this.createCourse(D,C,N,G,S,Cat)
         this._http.postCourse(courseSub).subscribe((res: CourseData) =>{
@@ -280,6 +282,7 @@ export class ChecksheetComponent implements OnInit {
     courseSub.Name = this.sheet.get(N).value;
     return courseSub
   }
+  
   putEnroll(D: string,C: string,N: string, G: string, S: string, Cat: string){
     var enrollSub = new EnrollData
     enrollSub.sid = this.message.id
