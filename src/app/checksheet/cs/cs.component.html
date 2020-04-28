@@ -19,7 +19,7 @@
         <tr  *ngFor="let data of RCourses; let i=index" class="courseTable"> <!--Row 4 -->
             <ng-container *ngIf="EnrolledCS.has(data.CourseNum); else elseBlock">
             
-            <td><div id="RightRow"><input type="checkbox" [disabled]="enableStat[i]"  name ="box" (change)="onCheckboxChange($event,i)"  [checked]="checked[i]"/><input class="course" [disabled]="enableStat[i]" value={{data.Dept}}> <input class="course" value={{data.CourseNum}} [disabled]="enableStat[i]"><input class="courseName" [disabled]="enableStat[i]" value={{data.Name}}></div></td>   
+            <td><div id="RightRow"><input type="checkbox" [disabled]="enableStat[i]"  #box (change)="onCheckboxChange($event,i)"  [checked]="checked[i]"/><input class="course" [disabled]="enableStat[i]" value={{data.Dept}}> <input class="course" value={{data.CourseNum}} [disabled]="enableStat[i]"><input class="courseName" [disabled]="enableStat[i]" value={{data.Name}}></div></td>   
             <td align="center" colspan="3"><input class="grades" #grade [disabled]="enableStat[i]" [value]=EnrolledCS.get(data.CourseNum).Grade></td>
             <td align="center"><input class="credits" #SEM [disabled]="enableStat[i]" [value]=EnrolledCS.get(data.CourseNum).Semester></td> <button (click)="toggle(i,data.Name,data.CourseNum,data.Dept,grade.value,SEM.value,box,'M')">edit</button>
             </ng-container>
