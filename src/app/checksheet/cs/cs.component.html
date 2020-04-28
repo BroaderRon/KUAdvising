@@ -24,7 +24,7 @@
             <td align="center"><input class="credits" #SEM [disabled]="enableStat[i]" [value]=EnrolledCS.get(data.CourseNum).Semester></td> <button (click)="toggle(i,data.Name,data.CourseNum,data.Dept,grade.value,SEM.value,box,'M')">edit</button>
             </ng-container>
             <ng-template #elseBlock>
-            <td><div id="RightRow"><input type="checkbox" name = "box" [disabled]="enableStat[i]" [checked]="checked[i]" (change)="onCheckboxChange($event,i)" /><input class="course" [disabled]="enableStat[i]" value={{data.Dept}}> <input class="course" value={{data.CourseNum}} [disabled]="enableStat[i]"><input class="courseName" value={{data.Name}} [disabled]="enableStat[i]" ></div></td>     
+            <td><div id="RightRow"><input type="checkbox" #box [disabled]="enableStat[i]" [checked]="checked[i]" (change)="onCheckboxChange($event,i)" /><input class="course" [disabled]="enableStat[i]" value={{data.Dept}}> <input class="course" value={{data.CourseNum}} [disabled]="enableStat[i]"><input class="courseName" value={{data.Name}} [disabled]="enableStat[i]" ></div></td>     
             <td align="center" colspan="3"><input class="grades" #grade [disabled]="enableStat[i]" value=""></td>
             <td align="center"><input class="credits"  #SEM [disabled]="enableStat[i]" value=""></td> <button (click)="toggle(i,data.Name,data.CourseNum,data.Dept,grade.value,SEM.value,box,'M')">edit</button>
              </ng-template>

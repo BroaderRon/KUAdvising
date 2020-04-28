@@ -83,13 +83,13 @@
     <tbody>    
       
       <tr class="courseTable"> <!--Row 3 -->
-        <td> <div id="RightRow"><input type="checkbox" name = "box" [disabled]="DIH1" formControlName="DIH1" (change)="changeDI1()" [checked]="DIH1" /><input class="course" name="DID1" formControlName="DID1" > <input class="course" name="DIC1" formControlName="DIC1"><input class="courseName" formControlName="DIN1" ></div>      
+        <td> <div id="RightRow"><input type="checkbox" #box [disabled]="DIH1" formControlName="DIH1" (change)="changeDI1()" [checked]="DIH1" /><input class="course" name="DID1" formControlName="DID1" > <input class="course" name="DIC1" formControlName="DIC1"><input class="courseName" formControlName="DIN1" ></div>      
           <td align="center" colspan="3" ><input class="grades" formControlName="DIG1"></td>
           <td align="center"><input class="credits" formControlName="DIS1"></td><button (click)='toggle3("DID1","DIC1","DIN1", "DIG1", "DIS1", "DI","DIH1")'>edit</button>
       </tr>
       
       <tr class="courseTable"> <!--Row 4 -->
-        <td> <div id="RightRow"><input type="checkbox" name = "box" [disabled]="DIH2" formControlName="DIH2" (change)="changeDI2()" [checked]="DIH2" /><input class="course" name="DID2" formControlName="DID2" > <input class="course" name="DIC2" formControlName="DIC2"><input class="courseName" formControlName="DIN2" ></div>      
+        <td> <div id="RightRow"><input type="checkbox" #box [disabled]="DIH2" formControlName="DIH2" (change)="changeDI2()" [checked]="DIH2" /><input class="course" name="DID2" formControlName="DID2" > <input class="course" name="DIC2" formControlName="DIC2"><input class="courseName" formControlName="DIN2" ></div>      
           <td align="center" colspan="3" ><input class="grades" formControlName="DIG2"></td>
           <td align="center"><input class="credits" formControlName="DIS2"></td><button (click)='toggle3("DID2","DIC2","DIN2", "DIG2", "DIS2", "DI","DIH2")'>edit</button>
       </tr>
