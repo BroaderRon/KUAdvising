@@ -13,7 +13,7 @@ import { LogData } from './checksheet/log/LogData';
 export class HttpService {
 
   constructor(private http: HttpClient) { }
-  link = "http://127.0.0.1:5000/"
+  link = "https://kuadvsys.herokuapp.com/"
   getStudent() {
     return this.http.get(this.link + 'student')
   }
