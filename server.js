@@ -1,14 +1,16 @@
-const express= require('express'),
-     path = require('path');
+const express= require('express');
 const app = express();
+path = require('path');
 
-app.use(express.static('./dist/frontend'));
+
+
+app.use(express.static(__dirname+'/dist/'));
+
+app.listen(process.env.PORT || 8080);
 
 app.get('/*' , (req,res)=>{
-    res.sendFile(path.join(__dirname,'/dist/frontend/index.html'));
+    //res.setHeader("Content-Security-Policy", "script-src '*'");
+    res.sendFile(path.join(__dirname,'/dist/index.html'));
 });
 
-app.listen(process.env.PORT || 8080,()=>{
-    console.log('server started')
-})
-
+console.log('console is listening!');

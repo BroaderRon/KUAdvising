@@ -308,7 +308,13 @@ export class ChecksheetComponent implements OnInit {
       }
     });
   }
-  toggle(D: string,C: string,N: string, G: string, S: string, Cat: string){
+  toggle(D: string,C: string,N: string, G: string, S: string, Cat: string, event){
+    if(event.srcElement.innerHTML ==='edit' ){
+      event.srcElement.innerHTML="save"
+    }
+    else if(event.srcElement.innerHTML ==='save'){
+      event.srcElement.innerHTML="edit"
+    }
     if(this.sheet.get(D).disabled){
       this.sheet.get(D).enable()
       this.sheet.get(C).enable()

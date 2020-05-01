@@ -19,7 +19,7 @@ export class LandingPageComponent implements OnInit {
   ToggleCreateB = false;
   showCreate = false;
   StuRadio: string = "a"
-  userclaimC: UserClaims;
+  userclaimE;
   createStudent = new FormGroup({
     NS1: new FormControl('')
   });
@@ -32,7 +32,7 @@ export class LandingPageComponent implements OnInit {
   async ngOnInit() {
     // returns an array of claims
     const userClaims = await this.oktaAuth.getUser();
-    this.userclaimC = userClaims
+    this.userclaimE = userClaims.email;
   this._http.getAdvisor(userClaims.email).subscribe((res: EnrollResData ) =>{
     console.log(res.RESULT)
     if(res.RESULT == "TRUE"){//get stus
@@ -66,7 +66,7 @@ export class LandingPageComponent implements OnInit {
   }
   openSheet(Stu:StudentData){
     console.log(Stu)
-    console.log(this.userclaimC.email)
+    console.log(this.userclaimE)
     this.data.changeMessage(Stu);
     if(Stu.major =="Computer Science"){
       this.router.navigate(['./checksheet/CS']);
@@ -80,7 +80,7 @@ export class LandingPageComponent implements OnInit {
     let tmp = new StudentData;
     tmp.name = name;
     tmp.id = id;
-    tmp.Aemail = this.userclaimC.email;
+    tmp.Aemail = this.userclaimE;
     tmp.major = this.createStudent.get('NS1').value
     this._http.postStudent(tmp).subscribe((ret: StudentData)=>{
       console.log(ret)

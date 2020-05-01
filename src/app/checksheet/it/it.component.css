@@ -25,3 +25,6 @@
     width: 1200px; 
     
 }
+::ng-deep .colorRed{
+    color:red
+}

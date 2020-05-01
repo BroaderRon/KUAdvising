@@ -197,9 +197,15 @@ export class CSComponent implements OnInit {
   );
   return temp;
   }
-  toggle(index, name,coursenum,dept,grade,semester,box,cat){
+  toggle(index, name,coursenum,dept,grade,semester,box,cat,event){
     console.log(index)
     console.log(this.checked[index])
+    if(event.srcElement.innerHTML ==='edit' ){
+      event.srcElement.innerHTML="save"
+    }
+    else if(event.srcElement.innerHTML ==='save'){
+      event.srcElement.innerHTML="edit"
+    }
     if(this.enableStat[index]){
       this.enableStat[index] = false;
     }
@@ -493,7 +499,7 @@ export class CSComponent implements OnInit {
      }); 
    }
    else if(this.Enrolled[enroll].Cat == "E3"){
-
+    
       new Promise(resolve => {
        var dept = 'E3D'+B
        var course = 'E3C' +B
@@ -526,7 +532,13 @@ export class CSComponent implements OnInit {
     return tempM;
   }
 
-  toggle2(D: string,C: string,N: string, G: string, S: string, Cat: string){
+  toggle2(D: string,C: string,N: string, G: string, S: string, Cat: string,event){
+    if(event.srcElement.innerHTML ==='edit' ){
+      event.srcElement.innerHTML="save"
+    }
+    else if(event.srcElement.innerHTML ==='save'){
+      event.srcElement.innerHTML="edit"
+    }
     if(this.sheet.get(D).disabled){
       this.sheet.get(D).enable()
       this.sheet.get(C).enable()
@@ -544,7 +556,13 @@ export class CSComponent implements OnInit {
 
     }
   }
-  toggle3(D: string,C: string,N: string, G: string, S: string, Cat: string, H: string){
+  toggle3(D: string,C: string,N: string, G: string, S: string, Cat: string, H: string, event){
+    if(event.srcElement.innerHTML ==='edit' ){
+      event.srcElement.innerHTML="save"
+    }
+    else if(event.srcElement.innerHTML ==='save'){
+      event.srcElement.innerHTML="edit"
+    }
     if(this.sheet.get(D).disabled){
       this.sheet.get(D).enable()
       this.sheet.get(C).enable()

@@ -19,7 +19,7 @@ import { LogComponent } from './checksheet/log/log.component';
 const config = {
   clientId: '0oaagw6yfRobu1uwU4x6',
   issuer: 'https://dev-855821.okta.com/oauth2/default',
-  redirectUri: 'https://localhost:4200/implicit/callback',
+  redirectUri: 'https://kuadvfrontend.herokuapp.com/implicit/callback',
   scopes: ['openid', 'profile', 'email'],
   pkce: true
 };
