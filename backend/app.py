@@ -15,11 +15,12 @@ app = Flask(__name__)
 CORS(app)
 basedir = os.path.abspath(os.path.dirname(__file__))
 
-# Database
+# Database setup change info to your database. 
 app.config['SQLALCHEMY_DATABASE_URI'] ='mysql+pymysql://kuadvsys:kuadvsys@ku-adv.cb4sk1ynfbfv.us-east-2.rds.amazonaws.com:3307/kuadv'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 WTF_CSRF_ENABLED = True
 SECRET_KEY = 'dsaf0897sfdg45sfdgfdsaqzdf98sdf0a'
+
 # Init db
 db = SQLAlchemy(app)
 # Init ma
