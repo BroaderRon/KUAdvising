@@ -271,7 +271,13 @@ export class ITComponent implements OnInit {
       }
     });
   }
-  toggle(index, name,coursenum,dept,grade,semester,box,cat){
+  toggle(index, name,coursenum,dept,grade,semester,box,cat,event){
+    if(event.srcElement.innerHTML ==='edit' ){
+      event.srcElement.innerHTML="save"
+    }
+    else if(event.srcElement.innerHTML ==='save'){
+      event.srcElement.innerHTML="edit"
+    }
     console.log(index)
     console.log(this.checked[index])
     if(this.enableStat[index]){
@@ -452,7 +458,13 @@ export class ITComponent implements OnInit {
     return tempM;
   }
  
-  toggle3(D: string,C: string,N: string, G: string, S: string, Cat: string, H: string){
+  toggle3(D: string,C: string,N: string, G: string, S: string, Cat: string, H: string, event){
+    if(event.srcElement.innerHTML ==='edit' ){
+      event.srcElement.innerHTML="save"
+    }
+    else if(event.srcElement.innerHTML ==='save'){
+      event.srcElement.innerHTML="edit"
+    }
     if(this.sheet.get(G).disabled){
       this.sheet.get(G).enable()
       this.sheet.get(S).enable()
@@ -467,7 +479,13 @@ export class ITComponent implements OnInit {
     }
   }
 
-  toggle2(D: string,C: string,N: string, G: string, S: string, Cat: string){
+  toggle2(D: string,C: string,N: string, G: string, S: string, Cat: string, event){
+    if(event.srcElement.innerHTML ==='edit' ){
+      event.srcElement.innerHTML="save"
+    }
+    else if(event.srcElement.innerHTML ==='save'){
+      event.srcElement.innerHTML="edit"
+    }
     console.log(N)
     if(this.sheet.get(G).disabled){
       this.sheet.get(D).enable()
@@ -487,6 +505,7 @@ export class ITComponent implements OnInit {
     }
   }
   processData(D: string,C: string,N: string, G: string, S: string, Cat: string){
+
     console.log(this.filledCourses)
     console.log("fill in procc "+this.filledCourses.get(D))
     console.log(this.filledCourses.has(D))

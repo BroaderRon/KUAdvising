@@ -15,11 +15,11 @@ import { ITComponent } from './checksheet/it/it.component';
 import {OKTA_CONFIG, OktaAuthModule,} from '@okta/okta-angular';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { LogComponent } from './checksheet/log/log.component';
-
+//okta settings needs to be changed to your OKTA account or replaced with a new login system
 const config = {
   clientId: '0oaagw6yfRobu1uwU4x6',
   issuer: 'https://dev-855821.okta.com/oauth2/default',
-  redirectUri: 'https://localhost:4200/implicit/callback',
+  redirectUri: 'https://kuadvfrontend.herokuapp.com/implicit/callback',
   scopes: ['openid', 'profile', 'email'],
   pkce: true
 };

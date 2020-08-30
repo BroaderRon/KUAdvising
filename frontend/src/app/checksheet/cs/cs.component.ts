@@ -120,38 +120,38 @@ export class CSComponent implements OnInit {
       E3N4: new FormControl(''),
       E3G4: new FormControl(''),
       E3S4: new FormControl(''),
-      //FREE ELECTIVES
-      E4D1: new FormControl(''),
-      E4C1: new FormControl(''),
-      E4N1: new FormControl(''),
-      E4G1: new FormControl(''),
-      E4S1: new FormControl(''),
-      E4H1: new FormControl(''),
-      E4D2: new FormControl(''),
-      E4C2: new FormControl(''),
-      E4N2: new FormControl(''),
-      E4G2: new FormControl(''),
-      E4S2: new FormControl(''),
-      E4D3: new FormControl(''),
-      E4C3: new FormControl(''),
-      E4N3: new FormControl(''),
-      E4G3: new FormControl(''),
-      E4S3: new FormControl(''),
-      E4D4: new FormControl(''),
-      E4C4: new FormControl(''),
-      E4N4: new FormControl(''),
-      E4G4: new FormControl(''),
-      E4S4: new FormControl(''),
-      E4D5: new FormControl(''),
-      E4C5: new FormControl(''),
-      E4N5: new FormControl(''),
-      E4G5: new FormControl(''),
-      E4S5: new FormControl(''),
-      E4D6: new FormControl(''),
-      E4C6: new FormControl(''),
-      E4N6: new FormControl(''),
-      E4G6: new FormControl(''),
-      E4S6: new FormControl(''),
+            //FREE ELECTIVES
+            E4D1: new FormControl(''),
+            E4C1: new FormControl(''),
+            E4N1: new FormControl(''),
+            E4G1: new FormControl(''),
+            E4S1: new FormControl(''),
+            E4H1: new FormControl(''),
+            E4D2: new FormControl(''),
+            E4C2: new FormControl(''),
+            E4N2: new FormControl(''),
+            E4G2: new FormControl(''),
+            E4S2: new FormControl(''),
+            E4D3: new FormControl(''),
+            E4C3: new FormControl(''),
+            E4N3: new FormControl(''),
+            E4G3: new FormControl(''),
+            E4S3: new FormControl(''),
+            E4D4: new FormControl(''),
+            E4C4: new FormControl(''),
+            E4N4: new FormControl(''),
+            E4G4: new FormControl(''),
+            E4S4: new FormControl(''),
+            E4D5: new FormControl(''),
+            E4C5: new FormControl(''),
+            E4N5: new FormControl(''),
+            E4G5: new FormControl(''),
+            E4S5: new FormControl(''),
+            E4D6: new FormControl(''),
+            E4C6: new FormControl(''),
+            E4N6: new FormControl(''),
+            E4G6: new FormControl(''),
+            E4S6: new FormControl(''),
     });
   ngOnInit() {
     this.COH1 = false;
@@ -229,9 +229,15 @@ export class CSComponent implements OnInit {
   );
   return temp;
   }
-  toggle(index, name,coursenum,dept,grade,semester,box,cat){
+  toggle(index, name,coursenum,dept,grade,semester,box,cat,event){
     console.log(index)
     console.log(this.checked[index])
+    if(event.srcElement.innerHTML ==='edit' ){
+      event.srcElement.innerHTML="save"
+    }
+    else if(event.srcElement.innerHTML ==='save'){
+      event.srcElement.innerHTML="edit"
+    }
     if(this.enableStat[index]){
       this.enableStat[index] = false;
     }
@@ -311,6 +317,7 @@ export class CSComponent implements OnInit {
   loadSheet(){
     var A = 1
     var B = 1
+    var C = 1
     var tempM = new Map()
     console.log("in load")
     for ( let enroll in this.Enrolled){
@@ -525,7 +532,7 @@ export class CSComponent implements OnInit {
      }); 
    }
    else if(this.Enrolled[enroll].Cat == "E3"){
-
+    
       new Promise(resolve => {
        var dept = 'E3D'+B
        var course = 'E3C' +B
@@ -552,13 +559,47 @@ export class CSComponent implements OnInit {
       tempM.set(dept,newEntry)
      });
    }
+   else if(this.Enrolled[enroll].Cat == "E4"){
+    
+    new Promise(resolve => {
+     var dept = 'E4D'+C
+     var course = 'E4C' +C
+     var name = 'E4N' + C
+     var grade = "E4G" + C
+     var sem = "E4S"+C
+    this.sheet.controls[dept].setValue(this.Enrolled[enroll].Dept)
+    this.sheet.controls[course].setValue(this.Enrolled[enroll].CourseNum)
+    this.sheet.controls[grade].setValue(this.Enrolled[enroll].Grade)
+    this.sheet.controls[sem].setValue(this.Enrolled[enroll].Semester)
+    this._http.getCourse(this.Enrolled[enroll].Dept,this.Enrolled[enroll].CourseNum).subscribe((data: CourseData)=>{
+      this.sheet.controls[name].setValue(data.Name)
+      console.log()
+    });
+    B= B+1
+    resolve()
+    var newEntry = new EnrollData;
+    newEntry.sid = this.message.id
+    newEntry.Dept = this.sheet.get(dept).value
+    newEntry.CourseNum = this.sheet.get(course).value
+    newEntry.Cat = this.sheet.get(course).value
+    newEntry.Grade = this.sheet.get(grade).value
+    newEntry.Semester = this.sheet.get(sem).value
+    tempM.set(dept,newEntry)
+   });
+ }
   }
   
 
     return tempM;
   }
 
-  toggle2(D: string,C: string,N: string, G: string, S: string, Cat: string){
+  toggle2(D: string,C: string,N: string, G: string, S: string, Cat: string,event){
+    if(event.srcElement.innerHTML ==='edit' ){
+      event.srcElement.innerHTML="save"
+    }
+    else if(event.srcElement.innerHTML ==='save'){
+      event.srcElement.innerHTML="edit"
+    }
     if(this.sheet.get(D).disabled){
       this.sheet.get(D).enable()
       this.sheet.get(C).enable()
@@ -576,7 +617,13 @@ export class CSComponent implements OnInit {
 
     }
   }
-  toggle3(D: string,C: string,N: string, G: string, S: string, Cat: string, H: string){
+  toggle3(D: string,C: string,N: string, G: string, S: string, Cat: string, H: string, event){
+    if(event.srcElement.innerHTML ==='edit' ){
+      event.srcElement.innerHTML="save"
+    }
+    else if(event.srcElement.innerHTML ==='save'){
+      event.srcElement.innerHTML="edit"
+    }
     if(this.sheet.get(D).disabled){
       this.sheet.get(D).enable()
       this.sheet.get(C).enable()

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { OktaAuthService } from '@okta/okta-angular';
 
-const issuer = 'https://dev-855821.okta.com/oauth2/default';
-const redirectUri = 'https://localhost:4200/logged_out';
+const issuer = 'https://dev-855821.okta.com/oauth2/default';//NEED TO CHAMGE IF DIFFERENT OKTA ACCOUNT
+const redirectUri = 'https://kuadvfrontend.herokuapp.com/logged_out';
 
 
 @Component({
@@ -33,7 +33,7 @@ export class AppComponent {
     window.location.href = `${issuer}/v1/logout?id_token_hint=${idToken}&post_logout_redirect_uri=${redirectUri}`;
   }
   login() {
-    this.oktaAuth.loginRedirect('/landing');
+    this.oktaAuth.loginRedirect('/');
   }
   
 }
